@@ -200,6 +200,12 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    update_category: NexusGenRootTypes['categories'] | null; // categories
+  }
+  Query: { // field return type
+    list_categories: NexusGenRootTypes['categories'][]; // [categories!]!
+  }
   categories: { // field return type
     category_id: number; // Int!
     category_name: string; // String!
@@ -347,6 +353,12 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    update_category: { // args
+      id?: number | null; // Int
+      name?: string | null; // String
+    }
+  }
   categories: {
     products: { // args
       after?: NexusGenInputs['productsWhereUniqueInput'] | null; // productsWhereUniqueInput

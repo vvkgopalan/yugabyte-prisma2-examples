@@ -93,7 +93,9 @@ input employeesWhereUniqueInput {
   employee_id: Int
 }
 
-type Mutation
+type Mutation {
+  update_category(id: Int, name: String): categories
+}
 
 type order_details {
   discount: Float!
@@ -159,7 +161,9 @@ input productsWhereUniqueInput {
   product_id: Int
 }
 
-type Query
+type Query {
+  list_categories: [categories!]!
+}
 
 type region {
   region_description: String!
