@@ -18,7 +18,13 @@ And finally view your newly created cluster on this screen ![here](https://githu
 
 Once your cluster is up and running, we will now load some dummy data by doing the following. First, you will need to navigate to `~/code/yugabyte-db` or wherever you have cloned the `yugabyte-db` repository and connect to your Yugabyte database. If you are using a local cluster, connect to the `yugabyte` database by running `./bin/ysqlsh`. If you are using the Free Cloud Tier, navigate to your cluster and view the connection information by clicking `Connect`. Copy that command and run it locally.
 
-Now once you have connected to the default `yugabyte` database in your cluster by running the above command, load your data via `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_ddl.sql` and `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_data.sql`. 
+Now once you have connected to the default `yugabyte` database in your cluster by running the above command. Run the following to create the `northwind` database:
+```
+CREATE DATABASE northwind;
+\c northwind
+```
+
+Load your data via `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_ddl.sql` and `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_data.sql`. 
 
 ### 3. Add connection information to Prisma environment file. 
 
