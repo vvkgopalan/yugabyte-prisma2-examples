@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const customers = objectType({
-  name: 'customers',
+export const Customers = objectType({
+  name: 'Customers',
   definition(t) {
     t.model.address();
     t.model.city();
@@ -30,12 +30,12 @@ export const customersQuery = extendType({
 export const customersMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOnecustomers();
-    t.crud.updateOnecustomers();
-    t.crud.upsertOnecustomers();
-    t.crud.deleteOnecustomers();
+    t.crud.createOneCustomers();
+    t.crud.updateOneCustomers();
+    t.crud.upsertOneCustomers();
+    t.crud.deleteOneCustomers();
 
-    t.crud.updateManycustomers();
-    t.crud.deleteManycustomers();
+    t.crud.updateManyCustomers();
+    t.crud.deleteManyCustomers();
   },
 });

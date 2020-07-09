@@ -2,28 +2,86 @@
 ### Do not make changes to this file directly
 
 
-type categories {
+type BatchPayload {
+  count: Int!
+}
+
+type Categories {
   category_id: Int!
   category_name: String!
   description: String
-  products(after: productsWhereUniqueInput, before: productsWhereUniqueInput, first: Int, last: Int): [products!]!
+  products(after: ProductsWhereUniqueInput, before: ProductsWhereUniqueInput, first: Int, last: Int): [Products!]!
 }
 
-type customer_customer_demo {
-  customer_demographics: customer_demographics!
-  customer_id: String!
-  customer_type_id: String!
-  customers: customers!
+input CategoriesCreateInput {
+  category_id: Int!
+  category_name: String!
+  description: String
+  products: ProductsCreateManyWithoutCategoriesInput
 }
 
-input customer_customer_demoWhereUniqueInput {
-  customer_id_customer_type_id: Customer_idCustomer_type_idCompoundUniqueInput
+input CategoriesCreateOneWithoutProductsInput {
+  connect: CategoriesWhereUniqueInput
+  create: CategoriesCreateWithoutProductsInput
 }
 
-type customer_demographics {
-  customer_customer_demo(after: customer_customer_demoWhereUniqueInput, before: customer_customer_demoWhereUniqueInput, first: Int, last: Int): [customer_customer_demo!]!
-  customer_desc: String
-  customer_type_id: String!
+input CategoriesCreateWithoutProductsInput {
+  category_id: Int!
+  category_name: String!
+  description: String
+}
+
+input CategoriesOrderByInput {
+  category_id: OrderByArg
+  category_name: OrderByArg
+  description: OrderByArg
+}
+
+input CategoriesUpdateInput {
+  category_id: Int
+  category_name: String
+  description: String
+  products: ProductsUpdateManyWithoutCategoriesInput
+}
+
+input CategoriesUpdateManyMutationInput {
+  category_id: Int
+  category_name: String
+  description: String
+}
+
+input CategoriesUpdateOneWithoutProductsInput {
+  connect: CategoriesWhereUniqueInput
+  create: CategoriesCreateWithoutProductsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: CategoriesUpdateWithoutProductsDataInput
+  upsert: CategoriesUpsertWithoutProductsInput
+}
+
+input CategoriesUpdateWithoutProductsDataInput {
+  category_id: Int
+  category_name: String
+  description: String
+}
+
+input CategoriesUpsertWithoutProductsInput {
+  create: CategoriesCreateWithoutProductsInput!
+  update: CategoriesUpdateWithoutProductsDataInput!
+}
+
+input CategoriesWhereInput {
+  AND: [CategoriesWhereInput!]
+  category_id: IntFilter
+  category_name: StringFilter
+  description: NullableStringFilter
+  NOT: [CategoriesWhereInput!]
+  OR: [CategoriesWhereInput!]
+  products: ProductsFilter
+}
+
+input CategoriesWhereUniqueInput {
+  category_id: Int
 }
 
 input Customer_idCustomer_type_idCompoundUniqueInput {
@@ -31,20 +89,393 @@ input Customer_idCustomer_type_idCompoundUniqueInput {
   customer_type_id: String!
 }
 
-type customers {
+type CustomerCustomerDemo {
+  customer_demographics: CustomerDemographics!
+  customer_id: String!
+  customer_type_id: String!
+  customers: Customers!
+}
+
+input CustomerCustomerDemoCreateInput {
+  customer_demographics: CustomerDemographicsCreateOneWithoutCustomer_customer_demoInput!
+  customers: CustomersCreateOneWithoutCustomer_customer_demoInput!
+}
+
+input CustomerCustomerDemoCreateManyWithoutCustomer_demographicsInput {
+  connect: [CustomerCustomerDemoWhereUniqueInput!]
+  create: [CustomerCustomerDemoCreateWithoutCustomer_demographicsInput!]
+}
+
+input CustomerCustomerDemoCreateManyWithoutCustomersInput {
+  connect: [CustomerCustomerDemoWhereUniqueInput!]
+  create: [CustomerCustomerDemoCreateWithoutCustomersInput!]
+}
+
+input CustomerCustomerDemoCreateWithoutCustomer_demographicsInput {
+  customers: CustomersCreateOneWithoutCustomer_customer_demoInput!
+}
+
+input CustomerCustomerDemoCreateWithoutCustomersInput {
+  customer_demographics: CustomerDemographicsCreateOneWithoutCustomer_customer_demoInput!
+}
+
+input CustomerCustomerDemoFilter {
+  every: CustomerCustomerDemoWhereInput
+  none: CustomerCustomerDemoWhereInput
+  some: CustomerCustomerDemoWhereInput
+}
+
+input CustomerCustomerDemoScalarWhereInput {
+  AND: [CustomerCustomerDemoScalarWhereInput!]
+  customer_id: StringFilter
+  customer_type_id: StringFilter
+  NOT: [CustomerCustomerDemoScalarWhereInput!]
+  OR: [CustomerCustomerDemoScalarWhereInput!]
+}
+
+input CustomerCustomerDemoUpdateInput {
+  customer_demographics: CustomerDemographicsUpdateOneRequiredWithoutCustomer_customer_demoInput
+  customers: CustomersUpdateOneRequiredWithoutCustomer_customer_demoInput
+}
+
+input CustomerCustomerDemoUpdateManyDataInput
+
+input CustomerCustomerDemoUpdateManyMutationInput
+
+input CustomerCustomerDemoUpdateManyWithoutCustomer_demographicsInput {
+  connect: [CustomerCustomerDemoWhereUniqueInput!]
+  create: [CustomerCustomerDemoCreateWithoutCustomer_demographicsInput!]
+  delete: [CustomerCustomerDemoWhereUniqueInput!]
+  deleteMany: [CustomerCustomerDemoScalarWhereInput!]
+  disconnect: [CustomerCustomerDemoWhereUniqueInput!]
+  set: [CustomerCustomerDemoWhereUniqueInput!]
+  update: [CustomerCustomerDemoUpdateWithWhereUniqueWithoutCustomer_demographicsInput!]
+  updateMany: [CustomerCustomerDemoUpdateManyWithWhereNestedInput!]
+  upsert: [CustomerCustomerDemoUpsertWithWhereUniqueWithoutCustomer_demographicsInput!]
+}
+
+input CustomerCustomerDemoUpdateManyWithoutCustomersInput {
+  connect: [CustomerCustomerDemoWhereUniqueInput!]
+  create: [CustomerCustomerDemoCreateWithoutCustomersInput!]
+  delete: [CustomerCustomerDemoWhereUniqueInput!]
+  deleteMany: [CustomerCustomerDemoScalarWhereInput!]
+  disconnect: [CustomerCustomerDemoWhereUniqueInput!]
+  set: [CustomerCustomerDemoWhereUniqueInput!]
+  update: [CustomerCustomerDemoUpdateWithWhereUniqueWithoutCustomersInput!]
+  updateMany: [CustomerCustomerDemoUpdateManyWithWhereNestedInput!]
+  upsert: [CustomerCustomerDemoUpsertWithWhereUniqueWithoutCustomersInput!]
+}
+
+input CustomerCustomerDemoUpdateManyWithWhereNestedInput {
+  data: CustomerCustomerDemoUpdateManyDataInput!
+  where: CustomerCustomerDemoScalarWhereInput!
+}
+
+input CustomerCustomerDemoUpdateWithoutCustomer_demographicsDataInput {
+  customers: CustomersUpdateOneRequiredWithoutCustomer_customer_demoInput
+}
+
+input CustomerCustomerDemoUpdateWithoutCustomersDataInput {
+  customer_demographics: CustomerDemographicsUpdateOneRequiredWithoutCustomer_customer_demoInput
+}
+
+input CustomerCustomerDemoUpdateWithWhereUniqueWithoutCustomer_demographicsInput {
+  data: CustomerCustomerDemoUpdateWithoutCustomer_demographicsDataInput!
+  where: CustomerCustomerDemoWhereUniqueInput!
+}
+
+input CustomerCustomerDemoUpdateWithWhereUniqueWithoutCustomersInput {
+  data: CustomerCustomerDemoUpdateWithoutCustomersDataInput!
+  where: CustomerCustomerDemoWhereUniqueInput!
+}
+
+input CustomerCustomerDemoUpsertWithWhereUniqueWithoutCustomer_demographicsInput {
+  create: CustomerCustomerDemoCreateWithoutCustomer_demographicsInput!
+  update: CustomerCustomerDemoUpdateWithoutCustomer_demographicsDataInput!
+  where: CustomerCustomerDemoWhereUniqueInput!
+}
+
+input CustomerCustomerDemoUpsertWithWhereUniqueWithoutCustomersInput {
+  create: CustomerCustomerDemoCreateWithoutCustomersInput!
+  update: CustomerCustomerDemoUpdateWithoutCustomersDataInput!
+  where: CustomerCustomerDemoWhereUniqueInput!
+}
+
+input CustomerCustomerDemoWhereInput {
+  AND: [CustomerCustomerDemoWhereInput!]
+  customer_demographics: CustomerDemographicsWhereInput
+  customer_id: StringFilter
+  customer_type_id: StringFilter
+  customers: CustomersWhereInput
+  NOT: [CustomerCustomerDemoWhereInput!]
+  OR: [CustomerCustomerDemoWhereInput!]
+}
+
+input CustomerCustomerDemoWhereUniqueInput {
+  customer_id_customer_type_id: Customer_idCustomer_type_idCompoundUniqueInput
+}
+
+type CustomerDemographics {
+  customer_customer_demo(after: CustomerCustomerDemoWhereUniqueInput, before: CustomerCustomerDemoWhereUniqueInput, first: Int, last: Int): [CustomerCustomerDemo!]!
+  customer_desc: String
+  customer_type_id: String!
+}
+
+input CustomerDemographicsCreateInput {
+  customer_customer_demo: CustomerCustomerDemoCreateManyWithoutCustomer_demographicsInput
+  customer_desc: String
+  customer_type_id: String!
+}
+
+input CustomerDemographicsCreateOneWithoutCustomer_customer_demoInput {
+  connect: CustomerDemographicsWhereUniqueInput
+  create: CustomerDemographicsCreateWithoutCustomer_customer_demoInput
+}
+
+input CustomerDemographicsCreateWithoutCustomer_customer_demoInput {
+  customer_desc: String
+  customer_type_id: String!
+}
+
+input CustomerDemographicsOrderByInput {
+  customer_desc: OrderByArg
+  customer_type_id: OrderByArg
+}
+
+input CustomerDemographicsUpdateInput {
+  customer_customer_demo: CustomerCustomerDemoUpdateManyWithoutCustomer_demographicsInput
+  customer_desc: String
+  customer_type_id: String
+}
+
+input CustomerDemographicsUpdateManyMutationInput {
+  customer_desc: String
+  customer_type_id: String
+}
+
+input CustomerDemographicsUpdateOneRequiredWithoutCustomer_customer_demoInput {
+  connect: CustomerDemographicsWhereUniqueInput
+  create: CustomerDemographicsCreateWithoutCustomer_customer_demoInput
+  update: CustomerDemographicsUpdateWithoutCustomer_customer_demoDataInput
+  upsert: CustomerDemographicsUpsertWithoutCustomer_customer_demoInput
+}
+
+input CustomerDemographicsUpdateWithoutCustomer_customer_demoDataInput {
+  customer_desc: String
+  customer_type_id: String
+}
+
+input CustomerDemographicsUpsertWithoutCustomer_customer_demoInput {
+  create: CustomerDemographicsCreateWithoutCustomer_customer_demoInput!
+  update: CustomerDemographicsUpdateWithoutCustomer_customer_demoDataInput!
+}
+
+input CustomerDemographicsWhereInput {
+  AND: [CustomerDemographicsWhereInput!]
+  customer_customer_demo: CustomerCustomerDemoFilter
+  customer_desc: NullableStringFilter
+  customer_type_id: StringFilter
+  NOT: [CustomerDemographicsWhereInput!]
+  OR: [CustomerDemographicsWhereInput!]
+}
+
+input CustomerDemographicsWhereUniqueInput {
+  customer_type_id: String
+}
+
+type Customers {
   address: String
   city: String
   company_name: String!
   contact_name: String
   contact_title: String
   country: String
-  customer_customer_demo(after: customer_customer_demoWhereUniqueInput, before: customer_customer_demoWhereUniqueInput, first: Int, last: Int): [customer_customer_demo!]!
+  customer_customer_demo(after: CustomerCustomerDemoWhereUniqueInput, before: CustomerCustomerDemoWhereUniqueInput, first: Int, last: Int): [CustomerCustomerDemo!]!
   customer_id: String!
   fax: String
-  orders(after: ordersWhereUniqueInput, before: ordersWhereUniqueInput, first: Int, last: Int): [orders!]!
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Orders!]!
   phone: String
   postal_code: String
   region: String
+}
+
+input CustomersCreateInput {
+  address: String
+  city: String
+  company_name: String!
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_customer_demo: CustomerCustomerDemoCreateManyWithoutCustomersInput
+  customer_id: String!
+  fax: String
+  orders: OrdersCreateManyWithoutCustomersInput
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersCreateOneWithoutCustomer_customer_demoInput {
+  connect: CustomersWhereUniqueInput
+  create: CustomersCreateWithoutCustomer_customer_demoInput
+}
+
+input CustomersCreateOneWithoutOrdersInput {
+  connect: CustomersWhereUniqueInput
+  create: CustomersCreateWithoutOrdersInput
+}
+
+input CustomersCreateWithoutCustomer_customer_demoInput {
+  address: String
+  city: String
+  company_name: String!
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_id: String!
+  fax: String
+  orders: OrdersCreateManyWithoutCustomersInput
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersCreateWithoutOrdersInput {
+  address: String
+  city: String
+  company_name: String!
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_customer_demo: CustomerCustomerDemoCreateManyWithoutCustomersInput
+  customer_id: String!
+  fax: String
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersOrderByInput {
+  address: OrderByArg
+  city: OrderByArg
+  company_name: OrderByArg
+  contact_name: OrderByArg
+  contact_title: OrderByArg
+  country: OrderByArg
+  customer_id: OrderByArg
+  fax: OrderByArg
+  phone: OrderByArg
+  postal_code: OrderByArg
+  region: OrderByArg
+}
+
+input CustomersUpdateInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_customer_demo: CustomerCustomerDemoUpdateManyWithoutCustomersInput
+  customer_id: String
+  fax: String
+  orders: OrdersUpdateManyWithoutCustomersInput
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersUpdateManyMutationInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_id: String
+  fax: String
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersUpdateOneRequiredWithoutCustomer_customer_demoInput {
+  connect: CustomersWhereUniqueInput
+  create: CustomersCreateWithoutCustomer_customer_demoInput
+  update: CustomersUpdateWithoutCustomer_customer_demoDataInput
+  upsert: CustomersUpsertWithoutCustomer_customer_demoInput
+}
+
+input CustomersUpdateOneWithoutOrdersInput {
+  connect: CustomersWhereUniqueInput
+  create: CustomersCreateWithoutOrdersInput
+  delete: Boolean
+  disconnect: Boolean
+  update: CustomersUpdateWithoutOrdersDataInput
+  upsert: CustomersUpsertWithoutOrdersInput
+}
+
+input CustomersUpdateWithoutCustomer_customer_demoDataInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_id: String
+  fax: String
+  orders: OrdersUpdateManyWithoutCustomersInput
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersUpdateWithoutOrdersDataInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  customer_customer_demo: CustomerCustomerDemoUpdateManyWithoutCustomersInput
+  customer_id: String
+  fax: String
+  phone: String
+  postal_code: String
+  region: String
+}
+
+input CustomersUpsertWithoutCustomer_customer_demoInput {
+  create: CustomersCreateWithoutCustomer_customer_demoInput!
+  update: CustomersUpdateWithoutCustomer_customer_demoDataInput!
+}
+
+input CustomersUpsertWithoutOrdersInput {
+  create: CustomersCreateWithoutOrdersInput!
+  update: CustomersUpdateWithoutOrdersDataInput!
+}
+
+input CustomersWhereInput {
+  address: NullableStringFilter
+  AND: [CustomersWhereInput!]
+  city: NullableStringFilter
+  company_name: StringFilter
+  contact_name: NullableStringFilter
+  contact_title: NullableStringFilter
+  country: NullableStringFilter
+  customer_customer_demo: CustomerCustomerDemoFilter
+  customer_id: StringFilter
+  fax: NullableStringFilter
+  NOT: [CustomersWhereInput!]
+  OR: [CustomersWhereInput!]
+  orders: OrdersFilter
+  phone: NullableStringFilter
+  postal_code: NullableStringFilter
+  region: NullableStringFilter
+}
+
+input CustomersWhereUniqueInput {
+  customer_id: String
 }
 
 scalar DateTime
@@ -54,33 +485,22 @@ input Employee_idTerritory_idCompoundUniqueInput {
   territory_id: String!
 }
 
-type employee_territories {
-  employee_id: Int!
-  employees: employees!
-  territories: territories!
-  territory_id: String!
-}
-
-input employee_territoriesWhereUniqueInput {
-  employee_id_territory_id: Employee_idTerritory_idCompoundUniqueInput
-}
-
-type employees {
+type Employees {
   address: String
   birth_date: DateTime
   city: String
   country: String
   employee_id: Int!
-  employee_territories(after: employee_territoriesWhereUniqueInput, before: employee_territoriesWhereUniqueInput, first: Int, last: Int): [employee_territories!]!
-  employees: employees
+  employee_territories(after: EmployeeTerritoriesWhereUniqueInput, before: EmployeeTerritoriesWhereUniqueInput, first: Int, last: Int): [EmployeeTerritories!]!
+  employees: Employees
   extension: String
   first_name: String!
   hire_date: DateTime
   home_phone: String
   last_name: String!
   notes: String
-  orders(after: ordersWhereUniqueInput, before: ordersWhereUniqueInput, first: Int, last: Int): [orders!]!
-  other_employees(after: employeesWhereUniqueInput, before: employeesWhereUniqueInput, first: Int, last: Int): [employees!]!
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Orders!]!
+  other_employees(after: EmployeesWhereUniqueInput, before: EmployeesWhereUniqueInput, first: Int, last: Int): [Employees!]!
   photo_path: String
   postal_code: String
   region: String
@@ -89,26 +509,722 @@ type employees {
   title_of_courtesy: String
 }
 
-input employeesWhereUniqueInput {
+input EmployeesCreateInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int!
+  employee_territories: EmployeeTerritoriesCreateManyWithoutEmployeesInput
+  employees: EmployeesCreateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String!
+  hire_date: DateTime
+  home_phone: String
+  last_name: String!
+  notes: String
+  orders: OrdersCreateManyWithoutEmployeesInput
+  other_employees: EmployeesCreateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesCreateManyWithoutEmployeesInput {
+  connect: [EmployeesWhereUniqueInput!]
+  create: [EmployeesCreateWithoutEmployeesInput!]
+}
+
+input EmployeesCreateOneWithoutEmployee_territoriesInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutEmployee_territoriesInput
+}
+
+input EmployeesCreateOneWithoutOrdersInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutOrdersInput
+}
+
+input EmployeesCreateOneWithoutOther_employeesInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutOther_employeesInput
+}
+
+input EmployeesCreateWithoutEmployee_territoriesInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int!
+  employees: EmployeesCreateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String!
+  hire_date: DateTime
+  home_phone: String
+  last_name: String!
+  notes: String
+  orders: OrdersCreateManyWithoutEmployeesInput
+  other_employees: EmployeesCreateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesCreateWithoutEmployeesInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int!
+  employee_territories: EmployeeTerritoriesCreateManyWithoutEmployeesInput
+  extension: String
+  first_name: String!
+  hire_date: DateTime
+  home_phone: String
+  last_name: String!
+  notes: String
+  orders: OrdersCreateManyWithoutEmployeesInput
+  other_employees: EmployeesCreateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesCreateWithoutOrdersInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int!
+  employee_territories: EmployeeTerritoriesCreateManyWithoutEmployeesInput
+  employees: EmployeesCreateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String!
+  hire_date: DateTime
+  home_phone: String
+  last_name: String!
+  notes: String
+  other_employees: EmployeesCreateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesCreateWithoutOther_employeesInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int!
+  employee_territories: EmployeeTerritoriesCreateManyWithoutEmployeesInput
+  employees: EmployeesCreateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String!
+  hire_date: DateTime
+  home_phone: String
+  last_name: String!
+  notes: String
+  orders: OrdersCreateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesFilter {
+  every: EmployeesWhereInput
+  none: EmployeesWhereInput
+  some: EmployeesWhereInput
+}
+
+input EmployeesOrderByInput {
+  address: OrderByArg
+  birth_date: OrderByArg
+  city: OrderByArg
+  country: OrderByArg
+  employee_id: OrderByArg
+  extension: OrderByArg
+  first_name: OrderByArg
+  hire_date: OrderByArg
+  home_phone: OrderByArg
+  last_name: OrderByArg
+  notes: OrderByArg
+  photo_path: OrderByArg
+  postal_code: OrderByArg
+  region: OrderByArg
+  reports_to: OrderByArg
+  title: OrderByArg
+  title_of_courtesy: OrderByArg
+}
+
+input EmployeesScalarWhereInput {
+  address: NullableStringFilter
+  AND: [EmployeesScalarWhereInput!]
+  birth_date: NullableDateTimeFilter
+  city: NullableStringFilter
+  country: NullableStringFilter
+  employee_id: IntFilter
+  employee_territories: EmployeeTerritoriesFilter
+  extension: NullableStringFilter
+  first_name: StringFilter
+  hire_date: NullableDateTimeFilter
+  home_phone: NullableStringFilter
+  last_name: StringFilter
+  NOT: [EmployeesScalarWhereInput!]
+  notes: NullableStringFilter
+  OR: [EmployeesScalarWhereInput!]
+  orders: OrdersFilter
+  other_employees: EmployeesFilter
+  photo_path: NullableStringFilter
+  postal_code: NullableStringFilter
+  region: NullableStringFilter
+  reports_to: NullableIntFilter
+  title: NullableStringFilter
+  title_of_courtesy: NullableStringFilter
+}
+
+input EmployeesUpdateInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutEmployeesInput
+  employees: EmployeesUpdateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  orders: OrdersUpdateManyWithoutEmployeesInput
+  other_employees: EmployeesUpdateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateManyDataInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateManyMutationInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateManyWithoutEmployeesInput {
+  connect: [EmployeesWhereUniqueInput!]
+  create: [EmployeesCreateWithoutEmployeesInput!]
+  delete: [EmployeesWhereUniqueInput!]
+  deleteMany: [EmployeesScalarWhereInput!]
+  disconnect: [EmployeesWhereUniqueInput!]
+  set: [EmployeesWhereUniqueInput!]
+  update: [EmployeesUpdateWithWhereUniqueWithoutEmployeesInput!]
+  updateMany: [EmployeesUpdateManyWithWhereNestedInput!]
+  upsert: [EmployeesUpsertWithWhereUniqueWithoutEmployeesInput!]
+}
+
+input EmployeesUpdateManyWithWhereNestedInput {
+  data: EmployeesUpdateManyDataInput!
+  where: EmployeesScalarWhereInput!
+}
+
+input EmployeesUpdateOneRequiredWithoutEmployee_territoriesInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutEmployee_territoriesInput
+  update: EmployeesUpdateWithoutEmployee_territoriesDataInput
+  upsert: EmployeesUpsertWithoutEmployee_territoriesInput
+}
+
+input EmployeesUpdateOneWithoutOrdersInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutOrdersInput
+  delete: Boolean
+  disconnect: Boolean
+  update: EmployeesUpdateWithoutOrdersDataInput
+  upsert: EmployeesUpsertWithoutOrdersInput
+}
+
+input EmployeesUpdateOneWithoutOther_employeesInput {
+  connect: EmployeesWhereUniqueInput
+  create: EmployeesCreateWithoutOther_employeesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: EmployeesUpdateWithoutOther_employeesDataInput
+  upsert: EmployeesUpsertWithoutOther_employeesInput
+}
+
+input EmployeesUpdateWithoutEmployee_territoriesDataInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  employees: EmployeesUpdateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  orders: OrdersUpdateManyWithoutEmployeesInput
+  other_employees: EmployeesUpdateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateWithoutEmployeesDataInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutEmployeesInput
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  orders: OrdersUpdateManyWithoutEmployeesInput
+  other_employees: EmployeesUpdateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateWithoutOrdersDataInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutEmployeesInput
+  employees: EmployeesUpdateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  other_employees: EmployeesUpdateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateWithoutOther_employeesDataInput {
+  address: String
+  birth_date: DateTime
+  city: String
+  country: String
+  employee_id: Int
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutEmployeesInput
+  employees: EmployeesUpdateOneWithoutOther_employeesInput
+  extension: String
+  first_name: String
+  hire_date: DateTime
+  home_phone: String
+  last_name: String
+  notes: String
+  orders: OrdersUpdateManyWithoutEmployeesInput
+  photo_path: String
+  postal_code: String
+  region: String
+  title: String
+  title_of_courtesy: String
+}
+
+input EmployeesUpdateWithWhereUniqueWithoutEmployeesInput {
+  data: EmployeesUpdateWithoutEmployeesDataInput!
+  where: EmployeesWhereUniqueInput!
+}
+
+input EmployeesUpsertWithoutEmployee_territoriesInput {
+  create: EmployeesCreateWithoutEmployee_territoriesInput!
+  update: EmployeesUpdateWithoutEmployee_territoriesDataInput!
+}
+
+input EmployeesUpsertWithoutOrdersInput {
+  create: EmployeesCreateWithoutOrdersInput!
+  update: EmployeesUpdateWithoutOrdersDataInput!
+}
+
+input EmployeesUpsertWithoutOther_employeesInput {
+  create: EmployeesCreateWithoutOther_employeesInput!
+  update: EmployeesUpdateWithoutOther_employeesDataInput!
+}
+
+input EmployeesUpsertWithWhereUniqueWithoutEmployeesInput {
+  create: EmployeesCreateWithoutEmployeesInput!
+  update: EmployeesUpdateWithoutEmployeesDataInput!
+  where: EmployeesWhereUniqueInput!
+}
+
+input EmployeesWhereInput {
+  address: NullableStringFilter
+  AND: [EmployeesWhereInput!]
+  birth_date: NullableDateTimeFilter
+  city: NullableStringFilter
+  country: NullableStringFilter
+  employee_id: IntFilter
+  employee_territories: EmployeeTerritoriesFilter
+  employees: EmployeesWhereInput
+  extension: NullableStringFilter
+  first_name: StringFilter
+  hire_date: NullableDateTimeFilter
+  home_phone: NullableStringFilter
+  last_name: StringFilter
+  NOT: [EmployeesWhereInput!]
+  notes: NullableStringFilter
+  OR: [EmployeesWhereInput!]
+  orders: OrdersFilter
+  other_employees: EmployeesFilter
+  photo_path: NullableStringFilter
+  postal_code: NullableStringFilter
+  region: NullableStringFilter
+  reports_to: NullableIntFilter
+  title: NullableStringFilter
+  title_of_courtesy: NullableStringFilter
+}
+
+input EmployeesWhereUniqueInput {
   employee_id: Int
 }
 
+type EmployeeTerritories {
+  employee_id: Int!
+  employees: Employees!
+  territories: Territories!
+  territory_id: String!
+}
+
+input EmployeeTerritoriesCreateInput {
+  employees: EmployeesCreateOneWithoutEmployee_territoriesInput!
+  territories: TerritoriesCreateOneWithoutEmployee_territoriesInput!
+}
+
+input EmployeeTerritoriesCreateManyWithoutEmployeesInput {
+  connect: [EmployeeTerritoriesWhereUniqueInput!]
+  create: [EmployeeTerritoriesCreateWithoutEmployeesInput!]
+}
+
+input EmployeeTerritoriesCreateManyWithoutTerritoriesInput {
+  connect: [EmployeeTerritoriesWhereUniqueInput!]
+  create: [EmployeeTerritoriesCreateWithoutTerritoriesInput!]
+}
+
+input EmployeeTerritoriesCreateWithoutEmployeesInput {
+  territories: TerritoriesCreateOneWithoutEmployee_territoriesInput!
+}
+
+input EmployeeTerritoriesCreateWithoutTerritoriesInput {
+  employees: EmployeesCreateOneWithoutEmployee_territoriesInput!
+}
+
+input EmployeeTerritoriesFilter {
+  every: EmployeeTerritoriesWhereInput
+  none: EmployeeTerritoriesWhereInput
+  some: EmployeeTerritoriesWhereInput
+}
+
+input EmployeeTerritoriesOrderByInput {
+  employee_id: OrderByArg
+  territory_id: OrderByArg
+}
+
+input EmployeeTerritoriesScalarWhereInput {
+  AND: [EmployeeTerritoriesScalarWhereInput!]
+  employee_id: IntFilter
+  NOT: [EmployeeTerritoriesScalarWhereInput!]
+  OR: [EmployeeTerritoriesScalarWhereInput!]
+  territory_id: StringFilter
+}
+
+input EmployeeTerritoriesUpdateInput {
+  employees: EmployeesUpdateOneRequiredWithoutEmployee_territoriesInput
+  territories: TerritoriesUpdateOneRequiredWithoutEmployee_territoriesInput
+}
+
+input EmployeeTerritoriesUpdateManyDataInput
+
+input EmployeeTerritoriesUpdateManyMutationInput
+
+input EmployeeTerritoriesUpdateManyWithoutEmployeesInput {
+  connect: [EmployeeTerritoriesWhereUniqueInput!]
+  create: [EmployeeTerritoriesCreateWithoutEmployeesInput!]
+  delete: [EmployeeTerritoriesWhereUniqueInput!]
+  deleteMany: [EmployeeTerritoriesScalarWhereInput!]
+  disconnect: [EmployeeTerritoriesWhereUniqueInput!]
+  set: [EmployeeTerritoriesWhereUniqueInput!]
+  update: [EmployeeTerritoriesUpdateWithWhereUniqueWithoutEmployeesInput!]
+  updateMany: [EmployeeTerritoriesUpdateManyWithWhereNestedInput!]
+  upsert: [EmployeeTerritoriesUpsertWithWhereUniqueWithoutEmployeesInput!]
+}
+
+input EmployeeTerritoriesUpdateManyWithoutTerritoriesInput {
+  connect: [EmployeeTerritoriesWhereUniqueInput!]
+  create: [EmployeeTerritoriesCreateWithoutTerritoriesInput!]
+  delete: [EmployeeTerritoriesWhereUniqueInput!]
+  deleteMany: [EmployeeTerritoriesScalarWhereInput!]
+  disconnect: [EmployeeTerritoriesWhereUniqueInput!]
+  set: [EmployeeTerritoriesWhereUniqueInput!]
+  update: [EmployeeTerritoriesUpdateWithWhereUniqueWithoutTerritoriesInput!]
+  updateMany: [EmployeeTerritoriesUpdateManyWithWhereNestedInput!]
+  upsert: [EmployeeTerritoriesUpsertWithWhereUniqueWithoutTerritoriesInput!]
+}
+
+input EmployeeTerritoriesUpdateManyWithWhereNestedInput {
+  data: EmployeeTerritoriesUpdateManyDataInput!
+  where: EmployeeTerritoriesScalarWhereInput!
+}
+
+input EmployeeTerritoriesUpdateWithoutEmployeesDataInput {
+  territories: TerritoriesUpdateOneRequiredWithoutEmployee_territoriesInput
+}
+
+input EmployeeTerritoriesUpdateWithoutTerritoriesDataInput {
+  employees: EmployeesUpdateOneRequiredWithoutEmployee_territoriesInput
+}
+
+input EmployeeTerritoriesUpdateWithWhereUniqueWithoutEmployeesInput {
+  data: EmployeeTerritoriesUpdateWithoutEmployeesDataInput!
+  where: EmployeeTerritoriesWhereUniqueInput!
+}
+
+input EmployeeTerritoriesUpdateWithWhereUniqueWithoutTerritoriesInput {
+  data: EmployeeTerritoriesUpdateWithoutTerritoriesDataInput!
+  where: EmployeeTerritoriesWhereUniqueInput!
+}
+
+input EmployeeTerritoriesUpsertWithWhereUniqueWithoutEmployeesInput {
+  create: EmployeeTerritoriesCreateWithoutEmployeesInput!
+  update: EmployeeTerritoriesUpdateWithoutEmployeesDataInput!
+  where: EmployeeTerritoriesWhereUniqueInput!
+}
+
+input EmployeeTerritoriesUpsertWithWhereUniqueWithoutTerritoriesInput {
+  create: EmployeeTerritoriesCreateWithoutTerritoriesInput!
+  update: EmployeeTerritoriesUpdateWithoutTerritoriesDataInput!
+  where: EmployeeTerritoriesWhereUniqueInput!
+}
+
+input EmployeeTerritoriesWhereInput {
+  AND: [EmployeeTerritoriesWhereInput!]
+  employee_id: IntFilter
+  employees: EmployeesWhereInput
+  NOT: [EmployeeTerritoriesWhereInput!]
+  OR: [EmployeeTerritoriesWhereInput!]
+  territories: TerritoriesWhereInput
+  territory_id: StringFilter
+}
+
+input EmployeeTerritoriesWhereUniqueInput {
+  employee_id_territory_id: Employee_idTerritory_idCompoundUniqueInput
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
 type Mutation {
-  update_category(id: Int, name: String): categories
+  createOneCategories(data: CategoriesCreateInput!): Categories!
+  createOneCustomerCustomerDemo(data: CustomerCustomerDemoCreateInput!): CustomerCustomerDemo!
+  createOneCustomerDemographics(data: CustomerDemographicsCreateInput!): CustomerDemographics!
+  createOneCustomers(data: CustomersCreateInput!): Customers!
+  createOneEmployees(data: EmployeesCreateInput!): Employees!
+  createOneEmployeeTerritories(data: EmployeeTerritoriesCreateInput!): EmployeeTerritories!
+  createOneOrderDetails(data: OrderDetailsCreateInput!): OrderDetails!
+  createOneOrders(data: OrdersCreateInput!): Orders!
+  createOneProducts(data: ProductsCreateInput!): Products!
+  createOneRegion(data: RegionCreateInput!): Region!
+  createOneShippers(data: ShippersCreateInput!): Shippers!
+  createOneSuppliers(data: SuppliersCreateInput!): Suppliers!
+  createOneTerritories(data: TerritoriesCreateInput!): Territories!
+  createOneUSStates(data: USStatesCreateInput!): USStates!
+  deleteManyCategories(where: CategoriesWhereInput): BatchPayload!
+  deleteManyCustomerCustomerDemo(where: CustomerCustomerDemoWhereInput): BatchPayload!
+  deleteManyCustomerDemographics(where: CustomerDemographicsWhereInput): BatchPayload!
+  deleteManyCustomers(where: CustomersWhereInput): BatchPayload!
+  deleteManyEmployees(where: EmployeesWhereInput): BatchPayload!
+  deleteManyEmployeeTerritories(where: EmployeeTerritoriesWhereInput): BatchPayload!
+  deleteManyOrderDetails(where: OrderDetailsWhereInput): BatchPayload!
+  deleteManyOrders(where: OrdersWhereInput): BatchPayload!
+  deleteManyProducts(where: ProductsWhereInput): BatchPayload!
+  deleteManyRegion(where: RegionWhereInput): BatchPayload!
+  deleteManyShippers(where: ShippersWhereInput): BatchPayload!
+  deleteManySuppliers(where: SuppliersWhereInput): BatchPayload!
+  deleteManyTerritories(where: TerritoriesWhereInput): BatchPayload!
+  deleteManyUSStates(where: USStatesWhereInput): BatchPayload!
+  deleteOneCategories(where: CategoriesWhereUniqueInput!): Categories
+  deleteOneCustomerCustomerDemo(where: CustomerCustomerDemoWhereUniqueInput!): CustomerCustomerDemo
+  deleteOneCustomerDemographics(where: CustomerDemographicsWhereUniqueInput!): CustomerDemographics
+  deleteOneCustomers(where: CustomersWhereUniqueInput!): Customers
+  deleteOneEmployees(where: EmployeesWhereUniqueInput!): Employees
+  deleteOneEmployeeTerritories(where: EmployeeTerritoriesWhereUniqueInput!): EmployeeTerritories
+  deleteOneOrderDetails(where: OrderDetailsWhereUniqueInput!): OrderDetails
+  deleteOneOrders(where: OrdersWhereUniqueInput!): Orders
+  deleteOneProducts(where: ProductsWhereUniqueInput!): Products
+  deleteOneRegion(where: RegionWhereUniqueInput!): Region
+  deleteOneShippers(where: ShippersWhereUniqueInput!): Shippers
+  deleteOneSuppliers(where: SuppliersWhereUniqueInput!): Suppliers
+  deleteOneTerritories(where: TerritoriesWhereUniqueInput!): Territories
+  deleteOneUSStates(where: USStatesWhereUniqueInput!): USStates
+  updateManyCategories(data: CategoriesUpdateManyMutationInput!, where: CategoriesWhereInput): BatchPayload!
+  updateManyCustomerCustomerDemo(data: CustomerCustomerDemoUpdateManyMutationInput!, where: CustomerCustomerDemoWhereInput): BatchPayload!
+  updateManyCustomerDemographics(data: CustomerDemographicsUpdateManyMutationInput!, where: CustomerDemographicsWhereInput): BatchPayload!
+  updateManyCustomers(data: CustomersUpdateManyMutationInput!, where: CustomersWhereInput): BatchPayload!
+  updateManyEmployees(data: EmployeesUpdateManyMutationInput!, where: EmployeesWhereInput): BatchPayload!
+  updateManyEmployeeTerritories(data: EmployeeTerritoriesUpdateManyMutationInput!, where: EmployeeTerritoriesWhereInput): BatchPayload!
+  updateManyOrderDetails(data: OrderDetailsUpdateManyMutationInput!, where: OrderDetailsWhereInput): BatchPayload!
+  updateManyOrders(data: OrdersUpdateManyMutationInput!, where: OrdersWhereInput): BatchPayload!
+  updateManyProducts(data: ProductsUpdateManyMutationInput!, where: ProductsWhereInput): BatchPayload!
+  updateManyRegion(data: RegionUpdateManyMutationInput!, where: RegionWhereInput): BatchPayload!
+  updateManyShippers(data: ShippersUpdateManyMutationInput!, where: ShippersWhereInput): BatchPayload!
+  updateManySuppliers(data: SuppliersUpdateManyMutationInput!, where: SuppliersWhereInput): BatchPayload!
+  updateManyTerritories(data: TerritoriesUpdateManyMutationInput!, where: TerritoriesWhereInput): BatchPayload!
+  updateManyUSStates(data: USStatesUpdateManyMutationInput!, where: USStatesWhereInput): BatchPayload!
+  updateOneCategories(data: CategoriesUpdateInput!, where: CategoriesWhereUniqueInput!): Categories
+  updateOneCustomerCustomerDemo(data: CustomerCustomerDemoUpdateInput!, where: CustomerCustomerDemoWhereUniqueInput!): CustomerCustomerDemo
+  updateOneCustomerDemographics(data: CustomerDemographicsUpdateInput!, where: CustomerDemographicsWhereUniqueInput!): CustomerDemographics
+  updateOneCustomers(data: CustomersUpdateInput!, where: CustomersWhereUniqueInput!): Customers
+  updateOneEmployees(data: EmployeesUpdateInput!, where: EmployeesWhereUniqueInput!): Employees
+  updateOneEmployeeTerritories(data: EmployeeTerritoriesUpdateInput!, where: EmployeeTerritoriesWhereUniqueInput!): EmployeeTerritories
+  updateOneOrderDetails(data: OrderDetailsUpdateInput!, where: OrderDetailsWhereUniqueInput!): OrderDetails
+  updateOneOrders(data: OrdersUpdateInput!, where: OrdersWhereUniqueInput!): Orders
+  updateOneProducts(data: ProductsUpdateInput!, where: ProductsWhereUniqueInput!): Products
+  updateOneRegion(data: RegionUpdateInput!, where: RegionWhereUniqueInput!): Region
+  updateOneShippers(data: ShippersUpdateInput!, where: ShippersWhereUniqueInput!): Shippers
+  updateOneSuppliers(data: SuppliersUpdateInput!, where: SuppliersWhereUniqueInput!): Suppliers
+  updateOneTerritories(data: TerritoriesUpdateInput!, where: TerritoriesWhereUniqueInput!): Territories
+  updateOneUSStates(data: USStatesUpdateInput!, where: USStatesWhereUniqueInput!): USStates
+  upsertOneCategories(create: CategoriesCreateInput!, update: CategoriesUpdateInput!, where: CategoriesWhereUniqueInput!): Categories!
+  upsertOneCustomerCustomerDemo(create: CustomerCustomerDemoCreateInput!, update: CustomerCustomerDemoUpdateInput!, where: CustomerCustomerDemoWhereUniqueInput!): CustomerCustomerDemo!
+  upsertOneCustomerDemographics(create: CustomerDemographicsCreateInput!, update: CustomerDemographicsUpdateInput!, where: CustomerDemographicsWhereUniqueInput!): CustomerDemographics!
+  upsertOneCustomers(create: CustomersCreateInput!, update: CustomersUpdateInput!, where: CustomersWhereUniqueInput!): Customers!
+  upsertOneEmployees(create: EmployeesCreateInput!, update: EmployeesUpdateInput!, where: EmployeesWhereUniqueInput!): Employees!
+  upsertOneEmployeeTerritories(create: EmployeeTerritoriesCreateInput!, update: EmployeeTerritoriesUpdateInput!, where: EmployeeTerritoriesWhereUniqueInput!): EmployeeTerritories!
+  upsertOneOrderDetails(create: OrderDetailsCreateInput!, update: OrderDetailsUpdateInput!, where: OrderDetailsWhereUniqueInput!): OrderDetails!
+  upsertOneOrders(create: OrdersCreateInput!, update: OrdersUpdateInput!, where: OrdersWhereUniqueInput!): Orders!
+  upsertOneProducts(create: ProductsCreateInput!, update: ProductsUpdateInput!, where: ProductsWhereUniqueInput!): Products!
+  upsertOneRegion(create: RegionCreateInput!, update: RegionUpdateInput!, where: RegionWhereUniqueInput!): Region!
+  upsertOneShippers(create: ShippersCreateInput!, update: ShippersUpdateInput!, where: ShippersWhereUniqueInput!): Shippers!
+  upsertOneSuppliers(create: SuppliersCreateInput!, update: SuppliersUpdateInput!, where: SuppliersWhereUniqueInput!): Suppliers!
+  upsertOneTerritories(create: TerritoriesCreateInput!, update: TerritoriesUpdateInput!, where: TerritoriesWhereUniqueInput!): Territories!
+  upsertOneUSStates(create: USStatesCreateInput!, update: USStatesUpdateInput!, where: USStatesWhereUniqueInput!): USStates!
 }
 
-type order_details {
-  discount: Float!
-  order_id: Int!
-  orders: orders!
-  product_id: Int!
-  products: products!
-  quantity: Int!
-  unit_price: Float!
+input NullableDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
 }
 
-input order_detailsWhereUniqueInput {
-  order_id_product_id: Order_idProduct_idCompoundUniqueInput
+input NullableFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+input NullableIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+input NullableStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
 
 input Order_idProduct_idCompoundUniqueInput {
@@ -116,14 +1232,188 @@ input Order_idProduct_idCompoundUniqueInput {
   product_id: Int!
 }
 
-type orders {
+enum OrderByArg {
+  asc
+  desc
+}
+
+type OrderDetails {
+  discount: Float!
+  order_id: Int!
+  orders: Orders!
+  product_id: Int!
+  products: Products!
+  quantity: Int!
+  unit_price: Float!
+}
+
+input OrderDetailsCreateInput {
+  discount: Float!
+  orders: OrdersCreateOneWithoutOrder_detailsInput!
+  products: ProductsCreateOneWithoutOrder_detailsInput!
+  quantity: Int!
+  unit_price: Float!
+}
+
+input OrderDetailsCreateManyWithoutOrdersInput {
+  connect: [OrderDetailsWhereUniqueInput!]
+  create: [OrderDetailsCreateWithoutOrdersInput!]
+}
+
+input OrderDetailsCreateManyWithoutProductsInput {
+  connect: [OrderDetailsWhereUniqueInput!]
+  create: [OrderDetailsCreateWithoutProductsInput!]
+}
+
+input OrderDetailsCreateWithoutOrdersInput {
+  discount: Float!
+  products: ProductsCreateOneWithoutOrder_detailsInput!
+  quantity: Int!
+  unit_price: Float!
+}
+
+input OrderDetailsCreateWithoutProductsInput {
+  discount: Float!
+  orders: OrdersCreateOneWithoutOrder_detailsInput!
+  quantity: Int!
+  unit_price: Float!
+}
+
+input OrderDetailsFilter {
+  every: OrderDetailsWhereInput
+  none: OrderDetailsWhereInput
+  some: OrderDetailsWhereInput
+}
+
+input OrderDetailsOrderByInput {
+  discount: OrderByArg
+  order_id: OrderByArg
+  product_id: OrderByArg
+  quantity: OrderByArg
+  unit_price: OrderByArg
+}
+
+input OrderDetailsScalarWhereInput {
+  AND: [OrderDetailsScalarWhereInput!]
+  discount: FloatFilter
+  NOT: [OrderDetailsScalarWhereInput!]
+  OR: [OrderDetailsScalarWhereInput!]
+  order_id: IntFilter
+  product_id: IntFilter
+  quantity: IntFilter
+  unit_price: FloatFilter
+}
+
+input OrderDetailsUpdateInput {
+  discount: Float
+  orders: OrdersUpdateOneRequiredWithoutOrder_detailsInput
+  products: ProductsUpdateOneRequiredWithoutOrder_detailsInput
+  quantity: Int
+  unit_price: Float
+}
+
+input OrderDetailsUpdateManyDataInput {
+  discount: Float
+  quantity: Int
+  unit_price: Float
+}
+
+input OrderDetailsUpdateManyMutationInput {
+  discount: Float
+  quantity: Int
+  unit_price: Float
+}
+
+input OrderDetailsUpdateManyWithoutOrdersInput {
+  connect: [OrderDetailsWhereUniqueInput!]
+  create: [OrderDetailsCreateWithoutOrdersInput!]
+  delete: [OrderDetailsWhereUniqueInput!]
+  deleteMany: [OrderDetailsScalarWhereInput!]
+  disconnect: [OrderDetailsWhereUniqueInput!]
+  set: [OrderDetailsWhereUniqueInput!]
+  update: [OrderDetailsUpdateWithWhereUniqueWithoutOrdersInput!]
+  updateMany: [OrderDetailsUpdateManyWithWhereNestedInput!]
+  upsert: [OrderDetailsUpsertWithWhereUniqueWithoutOrdersInput!]
+}
+
+input OrderDetailsUpdateManyWithoutProductsInput {
+  connect: [OrderDetailsWhereUniqueInput!]
+  create: [OrderDetailsCreateWithoutProductsInput!]
+  delete: [OrderDetailsWhereUniqueInput!]
+  deleteMany: [OrderDetailsScalarWhereInput!]
+  disconnect: [OrderDetailsWhereUniqueInput!]
+  set: [OrderDetailsWhereUniqueInput!]
+  update: [OrderDetailsUpdateWithWhereUniqueWithoutProductsInput!]
+  updateMany: [OrderDetailsUpdateManyWithWhereNestedInput!]
+  upsert: [OrderDetailsUpsertWithWhereUniqueWithoutProductsInput!]
+}
+
+input OrderDetailsUpdateManyWithWhereNestedInput {
+  data: OrderDetailsUpdateManyDataInput!
+  where: OrderDetailsScalarWhereInput!
+}
+
+input OrderDetailsUpdateWithoutOrdersDataInput {
+  discount: Float
+  products: ProductsUpdateOneRequiredWithoutOrder_detailsInput
+  quantity: Int
+  unit_price: Float
+}
+
+input OrderDetailsUpdateWithoutProductsDataInput {
+  discount: Float
+  orders: OrdersUpdateOneRequiredWithoutOrder_detailsInput
+  quantity: Int
+  unit_price: Float
+}
+
+input OrderDetailsUpdateWithWhereUniqueWithoutOrdersInput {
+  data: OrderDetailsUpdateWithoutOrdersDataInput!
+  where: OrderDetailsWhereUniqueInput!
+}
+
+input OrderDetailsUpdateWithWhereUniqueWithoutProductsInput {
+  data: OrderDetailsUpdateWithoutProductsDataInput!
+  where: OrderDetailsWhereUniqueInput!
+}
+
+input OrderDetailsUpsertWithWhereUniqueWithoutOrdersInput {
+  create: OrderDetailsCreateWithoutOrdersInput!
+  update: OrderDetailsUpdateWithoutOrdersDataInput!
+  where: OrderDetailsWhereUniqueInput!
+}
+
+input OrderDetailsUpsertWithWhereUniqueWithoutProductsInput {
+  create: OrderDetailsCreateWithoutProductsInput!
+  update: OrderDetailsUpdateWithoutProductsDataInput!
+  where: OrderDetailsWhereUniqueInput!
+}
+
+input OrderDetailsWhereInput {
+  AND: [OrderDetailsWhereInput!]
+  discount: FloatFilter
+  NOT: [OrderDetailsWhereInput!]
+  OR: [OrderDetailsWhereInput!]
+  order_id: IntFilter
+  orders: OrdersWhereInput
+  product_id: IntFilter
+  products: ProductsWhereInput
+  quantity: IntFilter
+  unit_price: FloatFilter
+}
+
+input OrderDetailsWhereUniqueInput {
+  order_id_product_id: Order_idProduct_idCompoundUniqueInput
+}
+
+type Orders {
   customer_id: String
-  customers: customers
+  customers: Customers
   employee_id: Int
-  employees: employees
+  employees: Employees
   freight: Float
   order_date: DateTime
-  order_details(after: order_detailsWhereUniqueInput, before: order_detailsWhereUniqueInput, first: Int, last: Int): [order_details!]!
+  order_details(after: OrderDetailsWhereUniqueInput, before: OrderDetailsWhereUniqueInput, first: Int, last: Int): [OrderDetails!]!
   order_id: Int!
   required_date: DateTime
   ship_address: String
@@ -134,51 +1424,840 @@ type orders {
   ship_region: String
   ship_via: Int
   shipped_date: DateTime
-  shippers: shippers
+  shippers: Shippers
 }
 
-input ordersWhereUniqueInput {
+input OrdersCreateInput {
+  customers: CustomersCreateOneWithoutOrdersInput
+  employees: EmployeesCreateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsCreateManyWithoutOrdersInput
+  order_id: Int!
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersCreateOneWithoutOrdersInput
+}
+
+input OrdersCreateManyWithoutCustomersInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutCustomersInput!]
+}
+
+input OrdersCreateManyWithoutEmployeesInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutEmployeesInput!]
+}
+
+input OrdersCreateManyWithoutShippersInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutShippersInput!]
+}
+
+input OrdersCreateOneWithoutOrder_detailsInput {
+  connect: OrdersWhereUniqueInput
+  create: OrdersCreateWithoutOrder_detailsInput
+}
+
+input OrdersCreateWithoutCustomersInput {
+  employees: EmployeesCreateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsCreateManyWithoutOrdersInput
+  order_id: Int!
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersCreateOneWithoutOrdersInput
+}
+
+input OrdersCreateWithoutEmployeesInput {
+  customers: CustomersCreateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsCreateManyWithoutOrdersInput
+  order_id: Int!
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersCreateOneWithoutOrdersInput
+}
+
+input OrdersCreateWithoutOrder_detailsInput {
+  customers: CustomersCreateOneWithoutOrdersInput
+  employees: EmployeesCreateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_id: Int!
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersCreateOneWithoutOrdersInput
+}
+
+input OrdersCreateWithoutShippersInput {
+  customers: CustomersCreateOneWithoutOrdersInput
+  employees: EmployeesCreateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsCreateManyWithoutOrdersInput
+  order_id: Int!
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+}
+
+input OrdersFilter {
+  every: OrdersWhereInput
+  none: OrdersWhereInput
+  some: OrdersWhereInput
+}
+
+input OrdersOrderByInput {
+  customer_id: OrderByArg
+  employee_id: OrderByArg
+  freight: OrderByArg
+  order_date: OrderByArg
+  order_id: OrderByArg
+  required_date: OrderByArg
+  ship_address: OrderByArg
+  ship_city: OrderByArg
+  ship_country: OrderByArg
+  ship_name: OrderByArg
+  ship_postal_code: OrderByArg
+  ship_region: OrderByArg
+  ship_via: OrderByArg
+  shipped_date: OrderByArg
+}
+
+input OrdersScalarWhereInput {
+  AND: [OrdersScalarWhereInput!]
+  customer_id: NullableStringFilter
+  employee_id: NullableIntFilter
+  freight: NullableFloatFilter
+  NOT: [OrdersScalarWhereInput!]
+  OR: [OrdersScalarWhereInput!]
+  order_date: NullableDateTimeFilter
+  order_details: OrderDetailsFilter
+  order_id: IntFilter
+  required_date: NullableDateTimeFilter
+  ship_address: NullableStringFilter
+  ship_city: NullableStringFilter
+  ship_country: NullableStringFilter
+  ship_name: NullableStringFilter
+  ship_postal_code: NullableStringFilter
+  ship_region: NullableStringFilter
+  ship_via: NullableIntFilter
+  shipped_date: NullableDateTimeFilter
+}
+
+input OrdersUpdateInput {
+  customers: CustomersUpdateOneWithoutOrdersInput
+  employees: EmployeesUpdateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsUpdateManyWithoutOrdersInput
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersUpdateOneWithoutOrdersInput
+}
+
+input OrdersUpdateManyDataInput {
+  freight: Float
+  order_date: DateTime
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+}
+
+input OrdersUpdateManyMutationInput {
+  freight: Float
+  order_date: DateTime
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+}
+
+input OrdersUpdateManyWithoutCustomersInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutCustomersInput!]
+  delete: [OrdersWhereUniqueInput!]
+  deleteMany: [OrdersScalarWhereInput!]
+  disconnect: [OrdersWhereUniqueInput!]
+  set: [OrdersWhereUniqueInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutCustomersInput!]
+  updateMany: [OrdersUpdateManyWithWhereNestedInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutCustomersInput!]
+}
+
+input OrdersUpdateManyWithoutEmployeesInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutEmployeesInput!]
+  delete: [OrdersWhereUniqueInput!]
+  deleteMany: [OrdersScalarWhereInput!]
+  disconnect: [OrdersWhereUniqueInput!]
+  set: [OrdersWhereUniqueInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutEmployeesInput!]
+  updateMany: [OrdersUpdateManyWithWhereNestedInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutEmployeesInput!]
+}
+
+input OrdersUpdateManyWithoutShippersInput {
+  connect: [OrdersWhereUniqueInput!]
+  create: [OrdersCreateWithoutShippersInput!]
+  delete: [OrdersWhereUniqueInput!]
+  deleteMany: [OrdersScalarWhereInput!]
+  disconnect: [OrdersWhereUniqueInput!]
+  set: [OrdersWhereUniqueInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutShippersInput!]
+  updateMany: [OrdersUpdateManyWithWhereNestedInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutShippersInput!]
+}
+
+input OrdersUpdateManyWithWhereNestedInput {
+  data: OrdersUpdateManyDataInput!
+  where: OrdersScalarWhereInput!
+}
+
+input OrdersUpdateOneRequiredWithoutOrder_detailsInput {
+  connect: OrdersWhereUniqueInput
+  create: OrdersCreateWithoutOrder_detailsInput
+  update: OrdersUpdateWithoutOrder_detailsDataInput
+  upsert: OrdersUpsertWithoutOrder_detailsInput
+}
+
+input OrdersUpdateWithoutCustomersDataInput {
+  employees: EmployeesUpdateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsUpdateManyWithoutOrdersInput
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersUpdateOneWithoutOrdersInput
+}
+
+input OrdersUpdateWithoutEmployeesDataInput {
+  customers: CustomersUpdateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsUpdateManyWithoutOrdersInput
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersUpdateOneWithoutOrdersInput
+}
+
+input OrdersUpdateWithoutOrder_detailsDataInput {
+  customers: CustomersUpdateOneWithoutOrdersInput
+  employees: EmployeesUpdateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+  shippers: ShippersUpdateOneWithoutOrdersInput
+}
+
+input OrdersUpdateWithoutShippersDataInput {
+  customers: CustomersUpdateOneWithoutOrdersInput
+  employees: EmployeesUpdateOneWithoutOrdersInput
+  freight: Float
+  order_date: DateTime
+  order_details: OrderDetailsUpdateManyWithoutOrdersInput
+  order_id: Int
+  required_date: DateTime
+  ship_address: String
+  ship_city: String
+  ship_country: String
+  ship_name: String
+  ship_postal_code: String
+  ship_region: String
+  shipped_date: DateTime
+}
+
+input OrdersUpdateWithWhereUniqueWithoutCustomersInput {
+  data: OrdersUpdateWithoutCustomersDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpdateWithWhereUniqueWithoutEmployeesInput {
+  data: OrdersUpdateWithoutEmployeesDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpdateWithWhereUniqueWithoutShippersInput {
+  data: OrdersUpdateWithoutShippersDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpsertWithoutOrder_detailsInput {
+  create: OrdersCreateWithoutOrder_detailsInput!
+  update: OrdersUpdateWithoutOrder_detailsDataInput!
+}
+
+input OrdersUpsertWithWhereUniqueWithoutCustomersInput {
+  create: OrdersCreateWithoutCustomersInput!
+  update: OrdersUpdateWithoutCustomersDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpsertWithWhereUniqueWithoutEmployeesInput {
+  create: OrdersCreateWithoutEmployeesInput!
+  update: OrdersUpdateWithoutEmployeesDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpsertWithWhereUniqueWithoutShippersInput {
+  create: OrdersCreateWithoutShippersInput!
+  update: OrdersUpdateWithoutShippersDataInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersWhereInput {
+  AND: [OrdersWhereInput!]
+  customer_id: NullableStringFilter
+  customers: CustomersWhereInput
+  employee_id: NullableIntFilter
+  employees: EmployeesWhereInput
+  freight: NullableFloatFilter
+  NOT: [OrdersWhereInput!]
+  OR: [OrdersWhereInput!]
+  order_date: NullableDateTimeFilter
+  order_details: OrderDetailsFilter
+  order_id: IntFilter
+  required_date: NullableDateTimeFilter
+  ship_address: NullableStringFilter
+  ship_city: NullableStringFilter
+  ship_country: NullableStringFilter
+  ship_name: NullableStringFilter
+  ship_postal_code: NullableStringFilter
+  ship_region: NullableStringFilter
+  ship_via: NullableIntFilter
+  shipped_date: NullableDateTimeFilter
+  shippers: ShippersWhereInput
+}
+
+input OrdersWhereUniqueInput {
   order_id: Int
 }
 
-type products {
-  categories: categories
+type Products {
+  categories: Categories
   category_id: Int
   discontinued: Int!
-  order_details(after: order_detailsWhereUniqueInput, before: order_detailsWhereUniqueInput, first: Int, last: Int): [order_details!]!
+  order_details(after: OrderDetailsWhereUniqueInput, before: OrderDetailsWhereUniqueInput, first: Int, last: Int): [OrderDetails!]!
   product_id: Int!
   product_name: String!
   quantity_per_unit: String
   reorder_level: Int
   supplier_id: Int
-  suppliers: suppliers
+  suppliers: Suppliers
   unit_price: Float
   units_in_stock: Int
   units_on_order: Int
 }
 
-input productsWhereUniqueInput {
+input ProductsCreateInput {
+  categories: CategoriesCreateOneWithoutProductsInput
+  discontinued: Int!
+  order_details: OrderDetailsCreateManyWithoutProductsInput
+  product_id: Int!
+  product_name: String!
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersCreateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsCreateManyWithoutCategoriesInput {
+  connect: [ProductsWhereUniqueInput!]
+  create: [ProductsCreateWithoutCategoriesInput!]
+}
+
+input ProductsCreateManyWithoutSuppliersInput {
+  connect: [ProductsWhereUniqueInput!]
+  create: [ProductsCreateWithoutSuppliersInput!]
+}
+
+input ProductsCreateOneWithoutOrder_detailsInput {
+  connect: ProductsWhereUniqueInput
+  create: ProductsCreateWithoutOrder_detailsInput
+}
+
+input ProductsCreateWithoutCategoriesInput {
+  discontinued: Int!
+  order_details: OrderDetailsCreateManyWithoutProductsInput
+  product_id: Int!
+  product_name: String!
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersCreateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsCreateWithoutOrder_detailsInput {
+  categories: CategoriesCreateOneWithoutProductsInput
+  discontinued: Int!
+  product_id: Int!
+  product_name: String!
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersCreateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsCreateWithoutSuppliersInput {
+  categories: CategoriesCreateOneWithoutProductsInput
+  discontinued: Int!
+  order_details: OrderDetailsCreateManyWithoutProductsInput
+  product_id: Int!
+  product_name: String!
+  quantity_per_unit: String
+  reorder_level: Int
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsFilter {
+  every: ProductsWhereInput
+  none: ProductsWhereInput
+  some: ProductsWhereInput
+}
+
+input ProductsOrderByInput {
+  category_id: OrderByArg
+  discontinued: OrderByArg
+  product_id: OrderByArg
+  product_name: OrderByArg
+  quantity_per_unit: OrderByArg
+  reorder_level: OrderByArg
+  supplier_id: OrderByArg
+  unit_price: OrderByArg
+  units_in_stock: OrderByArg
+  units_on_order: OrderByArg
+}
+
+input ProductsScalarWhereInput {
+  AND: [ProductsScalarWhereInput!]
+  category_id: NullableIntFilter
+  discontinued: IntFilter
+  NOT: [ProductsScalarWhereInput!]
+  OR: [ProductsScalarWhereInput!]
+  order_details: OrderDetailsFilter
+  product_id: IntFilter
+  product_name: StringFilter
+  quantity_per_unit: NullableStringFilter
+  reorder_level: NullableIntFilter
+  supplier_id: NullableIntFilter
+  unit_price: NullableFloatFilter
+  units_in_stock: NullableIntFilter
+  units_on_order: NullableIntFilter
+}
+
+input ProductsUpdateInput {
+  categories: CategoriesUpdateOneWithoutProductsInput
+  discontinued: Int
+  order_details: OrderDetailsUpdateManyWithoutProductsInput
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersUpdateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateManyDataInput {
+  discontinued: Int
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateManyMutationInput {
+  discontinued: Int
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateManyWithoutCategoriesInput {
+  connect: [ProductsWhereUniqueInput!]
+  create: [ProductsCreateWithoutCategoriesInput!]
+  delete: [ProductsWhereUniqueInput!]
+  deleteMany: [ProductsScalarWhereInput!]
+  disconnect: [ProductsWhereUniqueInput!]
+  set: [ProductsWhereUniqueInput!]
+  update: [ProductsUpdateWithWhereUniqueWithoutCategoriesInput!]
+  updateMany: [ProductsUpdateManyWithWhereNestedInput!]
+  upsert: [ProductsUpsertWithWhereUniqueWithoutCategoriesInput!]
+}
+
+input ProductsUpdateManyWithoutSuppliersInput {
+  connect: [ProductsWhereUniqueInput!]
+  create: [ProductsCreateWithoutSuppliersInput!]
+  delete: [ProductsWhereUniqueInput!]
+  deleteMany: [ProductsScalarWhereInput!]
+  disconnect: [ProductsWhereUniqueInput!]
+  set: [ProductsWhereUniqueInput!]
+  update: [ProductsUpdateWithWhereUniqueWithoutSuppliersInput!]
+  updateMany: [ProductsUpdateManyWithWhereNestedInput!]
+  upsert: [ProductsUpsertWithWhereUniqueWithoutSuppliersInput!]
+}
+
+input ProductsUpdateManyWithWhereNestedInput {
+  data: ProductsUpdateManyDataInput!
+  where: ProductsScalarWhereInput!
+}
+
+input ProductsUpdateOneRequiredWithoutOrder_detailsInput {
+  connect: ProductsWhereUniqueInput
+  create: ProductsCreateWithoutOrder_detailsInput
+  update: ProductsUpdateWithoutOrder_detailsDataInput
+  upsert: ProductsUpsertWithoutOrder_detailsInput
+}
+
+input ProductsUpdateWithoutCategoriesDataInput {
+  discontinued: Int
+  order_details: OrderDetailsUpdateManyWithoutProductsInput
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersUpdateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateWithoutOrder_detailsDataInput {
+  categories: CategoriesUpdateOneWithoutProductsInput
+  discontinued: Int
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  suppliers: SuppliersUpdateOneWithoutProductsInput
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateWithoutSuppliersDataInput {
+  categories: CategoriesUpdateOneWithoutProductsInput
+  discontinued: Int
+  order_details: OrderDetailsUpdateManyWithoutProductsInput
+  product_id: Int
+  product_name: String
+  quantity_per_unit: String
+  reorder_level: Int
+  unit_price: Float
+  units_in_stock: Int
+  units_on_order: Int
+}
+
+input ProductsUpdateWithWhereUniqueWithoutCategoriesInput {
+  data: ProductsUpdateWithoutCategoriesDataInput!
+  where: ProductsWhereUniqueInput!
+}
+
+input ProductsUpdateWithWhereUniqueWithoutSuppliersInput {
+  data: ProductsUpdateWithoutSuppliersDataInput!
+  where: ProductsWhereUniqueInput!
+}
+
+input ProductsUpsertWithoutOrder_detailsInput {
+  create: ProductsCreateWithoutOrder_detailsInput!
+  update: ProductsUpdateWithoutOrder_detailsDataInput!
+}
+
+input ProductsUpsertWithWhereUniqueWithoutCategoriesInput {
+  create: ProductsCreateWithoutCategoriesInput!
+  update: ProductsUpdateWithoutCategoriesDataInput!
+  where: ProductsWhereUniqueInput!
+}
+
+input ProductsUpsertWithWhereUniqueWithoutSuppliersInput {
+  create: ProductsCreateWithoutSuppliersInput!
+  update: ProductsUpdateWithoutSuppliersDataInput!
+  where: ProductsWhereUniqueInput!
+}
+
+input ProductsWhereInput {
+  AND: [ProductsWhereInput!]
+  categories: CategoriesWhereInput
+  category_id: NullableIntFilter
+  discontinued: IntFilter
+  NOT: [ProductsWhereInput!]
+  OR: [ProductsWhereInput!]
+  order_details: OrderDetailsFilter
+  product_id: IntFilter
+  product_name: StringFilter
+  quantity_per_unit: NullableStringFilter
+  reorder_level: NullableIntFilter
+  supplier_id: NullableIntFilter
+  suppliers: SuppliersWhereInput
+  unit_price: NullableFloatFilter
+  units_in_stock: NullableIntFilter
+  units_on_order: NullableIntFilter
+}
+
+input ProductsWhereUniqueInput {
   product_id: Int
 }
 
 type Query {
-  list_categories: [categories!]!
+  categories(after: CategoriesWhereUniqueInput, before: CategoriesWhereUniqueInput, first: Int, last: Int, orderBy: CategoriesOrderByInput, where: CategoriesWhereInput): [Categories!]!
+  customerCustomerDemo(where: CustomerCustomerDemoWhereUniqueInput!): CustomerCustomerDemo
+  customerDemographics(after: CustomerDemographicsWhereUniqueInput, before: CustomerDemographicsWhereUniqueInput, first: Int, last: Int, orderBy: CustomerDemographicsOrderByInput, where: CustomerDemographicsWhereInput): [CustomerDemographics!]!
+  customers(after: CustomersWhereUniqueInput, before: CustomersWhereUniqueInput, first: Int, last: Int, orderBy: CustomersOrderByInput, where: CustomersWhereInput): [Customers!]!
+  employees(after: EmployeesWhereUniqueInput, before: EmployeesWhereUniqueInput, first: Int, last: Int, orderBy: EmployeesOrderByInput, where: EmployeesWhereInput): [Employees!]!
+  employeeTerritories(after: EmployeeTerritoriesWhereUniqueInput, before: EmployeeTerritoriesWhereUniqueInput, first: Int, last: Int, orderBy: EmployeeTerritoriesOrderByInput, where: EmployeeTerritoriesWhereInput): [EmployeeTerritories!]!
+  orderDetails(after: OrderDetailsWhereUniqueInput, before: OrderDetailsWhereUniqueInput, first: Int, last: Int, orderBy: OrderDetailsOrderByInput, where: OrderDetailsWhereInput): [OrderDetails!]!
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int, orderBy: OrdersOrderByInput, where: OrdersWhereInput): [Orders!]!
+  products(after: ProductsWhereUniqueInput, before: ProductsWhereUniqueInput, first: Int, last: Int, orderBy: ProductsOrderByInput, where: ProductsWhereInput): [Products!]!
+  region(where: RegionWhereUniqueInput!): Region
+  shippers(after: ShippersWhereUniqueInput, before: ShippersWhereUniqueInput, first: Int, last: Int, orderBy: ShippersOrderByInput, where: ShippersWhereInput): [Shippers!]!
+  suppliers(after: SuppliersWhereUniqueInput, before: SuppliersWhereUniqueInput, first: Int, last: Int, orderBy: SuppliersOrderByInput, where: SuppliersWhereInput): [Suppliers!]!
+  territories(after: TerritoriesWhereUniqueInput, before: TerritoriesWhereUniqueInput, first: Int, last: Int, orderBy: TerritoriesOrderByInput, where: TerritoriesWhereInput): [Territories!]!
 }
 
-type region {
+type Region {
   region_description: String!
   region_id: Int!
-  territories(after: territoriesWhereUniqueInput, before: territoriesWhereUniqueInput, first: Int, last: Int): [territories!]!
+  territories(after: TerritoriesWhereUniqueInput, before: TerritoriesWhereUniqueInput, first: Int, last: Int): [Territories!]!
 }
 
-type shippers {
+input RegionCreateInput {
+  region_description: String!
+  region_id: Int!
+  territories: TerritoriesCreateManyWithoutRegionInput
+}
+
+input RegionCreateOneWithoutTerritoriesInput {
+  connect: RegionWhereUniqueInput
+  create: RegionCreateWithoutTerritoriesInput
+}
+
+input RegionCreateWithoutTerritoriesInput {
+  region_description: String!
+  region_id: Int!
+}
+
+input RegionUpdateInput {
+  region_description: String
+  region_id: Int
+  territories: TerritoriesUpdateManyWithoutRegionInput
+}
+
+input RegionUpdateManyMutationInput {
+  region_description: String
+  region_id: Int
+}
+
+input RegionUpdateOneRequiredWithoutTerritoriesInput {
+  connect: RegionWhereUniqueInput
+  create: RegionCreateWithoutTerritoriesInput
+  update: RegionUpdateWithoutTerritoriesDataInput
+  upsert: RegionUpsertWithoutTerritoriesInput
+}
+
+input RegionUpdateWithoutTerritoriesDataInput {
+  region_description: String
+  region_id: Int
+}
+
+input RegionUpsertWithoutTerritoriesInput {
+  create: RegionCreateWithoutTerritoriesInput!
+  update: RegionUpdateWithoutTerritoriesDataInput!
+}
+
+input RegionWhereInput {
+  AND: [RegionWhereInput!]
+  NOT: [RegionWhereInput!]
+  OR: [RegionWhereInput!]
+  region_description: StringFilter
+  region_id: IntFilter
+  territories: TerritoriesFilter
+}
+
+input RegionWhereUniqueInput {
+  region_id: Int
+}
+
+type Shippers {
   company_name: String!
-  orders(after: ordersWhereUniqueInput, before: ordersWhereUniqueInput, first: Int, last: Int): [orders!]!
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Orders!]!
   phone: String
   shipper_id: Int!
 }
 
-type suppliers {
+input ShippersCreateInput {
+  company_name: String!
+  orders: OrdersCreateManyWithoutShippersInput
+  phone: String
+  shipper_id: Int!
+}
+
+input ShippersCreateOneWithoutOrdersInput {
+  connect: ShippersWhereUniqueInput
+  create: ShippersCreateWithoutOrdersInput
+}
+
+input ShippersCreateWithoutOrdersInput {
+  company_name: String!
+  phone: String
+  shipper_id: Int!
+}
+
+input ShippersOrderByInput {
+  company_name: OrderByArg
+  phone: OrderByArg
+  shipper_id: OrderByArg
+}
+
+input ShippersUpdateInput {
+  company_name: String
+  orders: OrdersUpdateManyWithoutShippersInput
+  phone: String
+  shipper_id: Int
+}
+
+input ShippersUpdateManyMutationInput {
+  company_name: String
+  phone: String
+  shipper_id: Int
+}
+
+input ShippersUpdateOneWithoutOrdersInput {
+  connect: ShippersWhereUniqueInput
+  create: ShippersCreateWithoutOrdersInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ShippersUpdateWithoutOrdersDataInput
+  upsert: ShippersUpsertWithoutOrdersInput
+}
+
+input ShippersUpdateWithoutOrdersDataInput {
+  company_name: String
+  phone: String
+  shipper_id: Int
+}
+
+input ShippersUpsertWithoutOrdersInput {
+  create: ShippersCreateWithoutOrdersInput!
+  update: ShippersUpdateWithoutOrdersDataInput!
+}
+
+input ShippersWhereInput {
+  AND: [ShippersWhereInput!]
+  company_name: StringFilter
+  NOT: [ShippersWhereInput!]
+  OR: [ShippersWhereInput!]
+  orders: OrdersFilter
+  phone: NullableStringFilter
+  shipper_id: IntFilter
+}
+
+input ShippersWhereUniqueInput {
+  shipper_id: Int
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type Suppliers {
   address: String
   city: String
   company_name: String!
@@ -189,26 +2268,326 @@ type suppliers {
   homepage: String
   phone: String
   postal_code: String
-  products(after: productsWhereUniqueInput, before: productsWhereUniqueInput, first: Int, last: Int): [products!]!
+  products(after: ProductsWhereUniqueInput, before: ProductsWhereUniqueInput, first: Int, last: Int): [Products!]!
   region: String
   supplier_id: Int!
 }
 
-type territories {
-  employee_territories(after: employee_territoriesWhereUniqueInput, before: employee_territoriesWhereUniqueInput, first: Int, last: Int): [employee_territories!]!
-  region: region!
+input SuppliersCreateInput {
+  address: String
+  city: String
+  company_name: String!
+  contact_name: String
+  contact_title: String
+  country: String
+  fax: String
+  homepage: String
+  phone: String
+  postal_code: String
+  products: ProductsCreateManyWithoutSuppliersInput
+  region: String
+  supplier_id: Int!
+}
+
+input SuppliersCreateOneWithoutProductsInput {
+  connect: SuppliersWhereUniqueInput
+  create: SuppliersCreateWithoutProductsInput
+}
+
+input SuppliersCreateWithoutProductsInput {
+  address: String
+  city: String
+  company_name: String!
+  contact_name: String
+  contact_title: String
+  country: String
+  fax: String
+  homepage: String
+  phone: String
+  postal_code: String
+  region: String
+  supplier_id: Int!
+}
+
+input SuppliersOrderByInput {
+  address: OrderByArg
+  city: OrderByArg
+  company_name: OrderByArg
+  contact_name: OrderByArg
+  contact_title: OrderByArg
+  country: OrderByArg
+  fax: OrderByArg
+  homepage: OrderByArg
+  phone: OrderByArg
+  postal_code: OrderByArg
+  region: OrderByArg
+  supplier_id: OrderByArg
+}
+
+input SuppliersUpdateInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  fax: String
+  homepage: String
+  phone: String
+  postal_code: String
+  products: ProductsUpdateManyWithoutSuppliersInput
+  region: String
+  supplier_id: Int
+}
+
+input SuppliersUpdateManyMutationInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  fax: String
+  homepage: String
+  phone: String
+  postal_code: String
+  region: String
+  supplier_id: Int
+}
+
+input SuppliersUpdateOneWithoutProductsInput {
+  connect: SuppliersWhereUniqueInput
+  create: SuppliersCreateWithoutProductsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SuppliersUpdateWithoutProductsDataInput
+  upsert: SuppliersUpsertWithoutProductsInput
+}
+
+input SuppliersUpdateWithoutProductsDataInput {
+  address: String
+  city: String
+  company_name: String
+  contact_name: String
+  contact_title: String
+  country: String
+  fax: String
+  homepage: String
+  phone: String
+  postal_code: String
+  region: String
+  supplier_id: Int
+}
+
+input SuppliersUpsertWithoutProductsInput {
+  create: SuppliersCreateWithoutProductsInput!
+  update: SuppliersUpdateWithoutProductsDataInput!
+}
+
+input SuppliersWhereInput {
+  address: NullableStringFilter
+  AND: [SuppliersWhereInput!]
+  city: NullableStringFilter
+  company_name: StringFilter
+  contact_name: NullableStringFilter
+  contact_title: NullableStringFilter
+  country: NullableStringFilter
+  fax: NullableStringFilter
+  homepage: NullableStringFilter
+  NOT: [SuppliersWhereInput!]
+  OR: [SuppliersWhereInput!]
+  phone: NullableStringFilter
+  postal_code: NullableStringFilter
+  products: ProductsFilter
+  region: NullableStringFilter
+  supplier_id: IntFilter
+}
+
+input SuppliersWhereUniqueInput {
+  supplier_id: Int
+}
+
+type Territories {
+  employee_territories(after: EmployeeTerritoriesWhereUniqueInput, before: EmployeeTerritoriesWhereUniqueInput, first: Int, last: Int): [EmployeeTerritories!]!
+  region: Region!
   region_id: Int!
   territory_description: String!
   territory_id: String!
 }
 
-input territoriesWhereUniqueInput {
+input TerritoriesCreateInput {
+  employee_territories: EmployeeTerritoriesCreateManyWithoutTerritoriesInput
+  region: RegionCreateOneWithoutTerritoriesInput!
+  territory_description: String!
+  territory_id: String!
+}
+
+input TerritoriesCreateManyWithoutRegionInput {
+  connect: [TerritoriesWhereUniqueInput!]
+  create: [TerritoriesCreateWithoutRegionInput!]
+}
+
+input TerritoriesCreateOneWithoutEmployee_territoriesInput {
+  connect: TerritoriesWhereUniqueInput
+  create: TerritoriesCreateWithoutEmployee_territoriesInput
+}
+
+input TerritoriesCreateWithoutEmployee_territoriesInput {
+  region: RegionCreateOneWithoutTerritoriesInput!
+  territory_description: String!
+  territory_id: String!
+}
+
+input TerritoriesCreateWithoutRegionInput {
+  employee_territories: EmployeeTerritoriesCreateManyWithoutTerritoriesInput
+  territory_description: String!
+  territory_id: String!
+}
+
+input TerritoriesFilter {
+  every: TerritoriesWhereInput
+  none: TerritoriesWhereInput
+  some: TerritoriesWhereInput
+}
+
+input TerritoriesOrderByInput {
+  region_id: OrderByArg
+  territory_description: OrderByArg
+  territory_id: OrderByArg
+}
+
+input TerritoriesScalarWhereInput {
+  AND: [TerritoriesScalarWhereInput!]
+  employee_territories: EmployeeTerritoriesFilter
+  NOT: [TerritoriesScalarWhereInput!]
+  OR: [TerritoriesScalarWhereInput!]
+  region_id: IntFilter
+  territory_description: StringFilter
+  territory_id: StringFilter
+}
+
+input TerritoriesUpdateInput {
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutTerritoriesInput
+  region: RegionUpdateOneRequiredWithoutTerritoriesInput
+  territory_description: String
   territory_id: String
 }
 
-type us_states {
+input TerritoriesUpdateManyDataInput {
+  territory_description: String
+  territory_id: String
+}
+
+input TerritoriesUpdateManyMutationInput {
+  territory_description: String
+  territory_id: String
+}
+
+input TerritoriesUpdateManyWithoutRegionInput {
+  connect: [TerritoriesWhereUniqueInput!]
+  create: [TerritoriesCreateWithoutRegionInput!]
+  delete: [TerritoriesWhereUniqueInput!]
+  deleteMany: [TerritoriesScalarWhereInput!]
+  disconnect: [TerritoriesWhereUniqueInput!]
+  set: [TerritoriesWhereUniqueInput!]
+  update: [TerritoriesUpdateWithWhereUniqueWithoutRegionInput!]
+  updateMany: [TerritoriesUpdateManyWithWhereNestedInput!]
+  upsert: [TerritoriesUpsertWithWhereUniqueWithoutRegionInput!]
+}
+
+input TerritoriesUpdateManyWithWhereNestedInput {
+  data: TerritoriesUpdateManyDataInput!
+  where: TerritoriesScalarWhereInput!
+}
+
+input TerritoriesUpdateOneRequiredWithoutEmployee_territoriesInput {
+  connect: TerritoriesWhereUniqueInput
+  create: TerritoriesCreateWithoutEmployee_territoriesInput
+  update: TerritoriesUpdateWithoutEmployee_territoriesDataInput
+  upsert: TerritoriesUpsertWithoutEmployee_territoriesInput
+}
+
+input TerritoriesUpdateWithoutEmployee_territoriesDataInput {
+  region: RegionUpdateOneRequiredWithoutTerritoriesInput
+  territory_description: String
+  territory_id: String
+}
+
+input TerritoriesUpdateWithoutRegionDataInput {
+  employee_territories: EmployeeTerritoriesUpdateManyWithoutTerritoriesInput
+  territory_description: String
+  territory_id: String
+}
+
+input TerritoriesUpdateWithWhereUniqueWithoutRegionInput {
+  data: TerritoriesUpdateWithoutRegionDataInput!
+  where: TerritoriesWhereUniqueInput!
+}
+
+input TerritoriesUpsertWithoutEmployee_territoriesInput {
+  create: TerritoriesCreateWithoutEmployee_territoriesInput!
+  update: TerritoriesUpdateWithoutEmployee_territoriesDataInput!
+}
+
+input TerritoriesUpsertWithWhereUniqueWithoutRegionInput {
+  create: TerritoriesCreateWithoutRegionInput!
+  update: TerritoriesUpdateWithoutRegionDataInput!
+  where: TerritoriesWhereUniqueInput!
+}
+
+input TerritoriesWhereInput {
+  AND: [TerritoriesWhereInput!]
+  employee_territories: EmployeeTerritoriesFilter
+  NOT: [TerritoriesWhereInput!]
+  OR: [TerritoriesWhereInput!]
+  region: RegionWhereInput
+  region_id: IntFilter
+  territory_description: StringFilter
+  territory_id: StringFilter
+}
+
+input TerritoriesWhereUniqueInput {
+  territory_id: String
+}
+
+type USStates {
   state_abbr: String
   state_id: Int!
   state_name: String
   state_region: String
+}
+
+input USStatesCreateInput {
+  state_abbr: String
+  state_id: Int!
+  state_name: String
+  state_region: String
+}
+
+input USStatesUpdateInput {
+  state_abbr: String
+  state_id: Int
+  state_name: String
+  state_region: String
+}
+
+input USStatesUpdateManyMutationInput {
+  state_abbr: String
+  state_id: Int
+  state_name: String
+  state_region: String
+}
+
+input USStatesWhereInput {
+  AND: [USStatesWhereInput!]
+  NOT: [USStatesWhereInput!]
+  OR: [USStatesWhereInput!]
+  state_abbr: NullableStringFilter
+  state_id: IntFilter
+  state_name: NullableStringFilter
+  state_region: NullableStringFilter
+}
+
+input USStatesWhereUniqueInput {
+  state_id: Int
 }

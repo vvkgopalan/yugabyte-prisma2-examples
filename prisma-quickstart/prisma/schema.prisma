@@ -7,31 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model categories {
+model Categories {
   category_id   Int        @id
   category_name String
   description   String?
   // This type is currently not supported.
   // picture    binary?
-  products      products[]
+  products      Products[]
 }
 
-model customer_customer_demo {
+model CustomerCustomerDemo {
   customer_id           String
   customer_type_id      String
-  customers             customers             @relation(fields: [customer_id], references: [customer_id])
-  customer_demographics customer_demographics @relation(fields: [customer_type_id], references: [customer_type_id])
+  customers             Customers             @relation(fields: [customer_id], references: [customer_id])
+  customer_demographics CustomerDemographics @relation(fields: [customer_type_id], references: [customer_type_id])
 
   @@id([customer_id, customer_type_id])
 }
 
-model customer_demographics {
+model CustomerDemographics {
   customer_desc          String?
   customer_type_id       String                   @id
-  customer_customer_demo customer_customer_demo[]
+  customer_customer_demo CustomerCustomerDemo[]
 }
 
-model customers {
+model Customers {
   address                String?
   city                   String?
   company_name           String
@@ -43,20 +43,20 @@ model customers {
   phone                  String?
   postal_code            String?
   region                 String?
-  customer_customer_demo customer_customer_demo[]
-  orders                 orders[]
+  customer_customer_demo CustomerCustomerDemo[]
+  orders                 Orders[]
 }
 
-model employee_territories {
+model EmployeeTerritories {
   employee_id  Int
   territory_id String
-  employees    employees   @relation(fields: [employee_id], references: [employee_id])
-  territories  territories @relation(fields: [territory_id], references: [territory_id])
+  employees    Employees   @relation(fields: [employee_id], references: [employee_id])
+  territories  Territories @relation(fields: [territory_id], references: [territory_id])
 
   @@id([employee_id, territory_id])
 }
 
-model employees {
+model Employees {
   address              String?
   birth_date           DateTime?
   city                 String?
@@ -76,25 +76,25 @@ model employees {
   reports_to           Int?
   title                String?
   title_of_courtesy    String?
-  employees            employees?             @relation("employeesToemployees_reports_to", fields: [reports_to], references: [employee_id])
-  employee_territories employee_territories[]
-  other_employees      employees[]            @relation("employeesToemployees_reports_to")
-  orders               orders[]
+  employees            Employees?             @relation("employeesToemployees_reports_to", fields: [reports_to], references: [employee_id])
+  employee_territories EmployeeTerritories[]
+  other_employees      Employees[]            @relation("employeesToemployees_reports_to")
+  orders               Orders[]
 }
 
-model order_details {
+model OrderDetails {
   discount   Float
   order_id   Int
   product_id Int
   quantity   Int
   unit_price Float
-  orders     orders   @relation(fields: [order_id], references: [order_id])
-  products   products @relation(fields: [product_id], references: [product_id])
+  orders     Orders   @relation(fields: [order_id], references: [order_id])
+  products   Products @relation(fields: [product_id], references: [product_id])
 
   @@id([order_id, product_id])
 }
 
-model orders {
+model Orders {
   customer_id      String?
   employee_id      Int?
   freight          Float?
@@ -109,13 +109,13 @@ model orders {
   ship_region      String?
   ship_via         Int?
   shipped_date     DateTime?
-  customers        customers?      @relation(fields: [customer_id], references: [customer_id])
-  employees        employees?      @relation(fields: [employee_id], references: [employee_id])
-  shippers         shippers?       @relation(fields: [ship_via], references: [shipper_id])
-  order_details    order_details[]
+  customers        Customers?      @relation(fields: [customer_id], references: [customer_id])
+  employees        Employees?      @relation(fields: [employee_id], references: [employee_id])
+  shippers         Shippers?       @relation(fields: [ship_via], references: [shipper_id])
+  order_details    OrderDetails[]
 }
 
-model products {
+model Products {
   category_id       Int?
   discontinued      Int
   product_id        Int             @id
@@ -126,25 +126,25 @@ model products {
   unit_price        Float?
   units_in_stock    Int?
   units_on_order    Int?
-  categories        categories?     @relation(fields: [category_id], references: [category_id])
-  suppliers         suppliers?      @relation(fields: [supplier_id], references: [supplier_id])
-  order_details     order_details[]
+  categories        Categories?     @relation(fields: [category_id], references: [category_id])
+  suppliers         Suppliers?      @relation(fields: [supplier_id], references: [supplier_id])
+  order_details     OrderDetails[]
 }
 
-model region {
+model Region {
   region_description String
   region_id          Int           @id
-  territories        territories[]
+  territories        Territories[]
 }
 
-model shippers {
+model Shippers {
   company_name String
   phone        String?
   shipper_id   Int      @id
-  orders       orders[]
+  orders       Orders[]
 }
 
-model suppliers {
+model Suppliers {
   address       String?
   city          String?
   company_name  String
@@ -157,18 +157,18 @@ model suppliers {
   postal_code   String?
   region        String?
   supplier_id   Int        @id
-  products      products[]
+  products      Products[]
 }
 
-model territories {
+model Territories {
   region_id             Int
   territory_description String
   territory_id          String                 @id
-  region                region                 @relation(fields: [region_id], references: [region_id])
-  employee_territories  employee_territories[]
+  region                Region                 @relation(fields: [region_id], references: [region_id])
+  employee_territories  EmployeeTerritories[]
 }
 
-model us_states {
+model USStates {
   state_abbr   String?
   state_id     Int     @id
   state_name   String?

@@ -14,7 +14,7 @@ import * as types from './types'
 
 export const schema = makeSchema({
   types,
-  plugins: [nexusSchemaPrisma()],
+  plugins: [nexusSchemaPrisma({experimentalCRUD: true})],
   outputs: {
     schema: __dirname + '/../schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',

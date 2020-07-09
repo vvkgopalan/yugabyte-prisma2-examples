@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const region = objectType({
-  name: 'region',
+export const Region = objectType({
+  name: 'Region',
   definition(t) {
     t.model.region_description();
     t.model.region_id();
@@ -13,19 +13,19 @@ export const regionQuery = extendType({
   type: 'Query',
   definition(t) {
     t.crud.region();
-    t.crud.regions({ filtering: true, ordering: true });
+    t.crud.region({ filtering: true, ordering: true });
   },
 });
 
 export const regionMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneregion();
-    t.crud.updateOneregion();
-    t.crud.upsertOneregion();
-    t.crud.deleteOneregion();
+    t.crud.createOneRegion();
+    t.crud.updateOneRegion();
+    t.crud.upsertOneRegion();
+    t.crud.deleteOneRegion();
 
-    t.crud.updateManyregion();
-    t.crud.deleteManyregion();
+    t.crud.updateManyRegion();
+    t.crud.deleteManyRegion();
   },
 });

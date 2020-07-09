@@ -1,2 +1,4 @@
 prisma-quickstart/prisma/.env
-prisma-quickstart/node_modules
+prisma-quickstart/node_modules/
+prisma-quickstart/package-lock.json
+prisma-quickstart/src/generated/
