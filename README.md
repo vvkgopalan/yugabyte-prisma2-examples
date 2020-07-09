@@ -24,11 +24,11 @@ CREATE DATABASE northwind;
 \c northwind
 ```
 
-Load your data via `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_ddl.sql` and `\i ~/code/yugabyte-prisma2-examples/northwind-graphql/northwind_data.sql`. 
+Load your data via `\i ~/code/yugabyte-prisma2-examples/northwind/northwind_ddl.sql` and `\i ~/code/yugabyte-prisma2-examples/northwind/northwind_data.sql`. 
 
 ### 3. Add connection information to Prisma environment file. 
 
-Navigate to `~/code/prisma-examples/typescript/graphql/prisma` and modify the `.env` file. To connect your database, you need to set the URL field of the datasource block in your Prisma schema to your database connection URL. In this case, the url is set via an environment variable which is defined in `.env` of the form:
+Navigate to `~/code/prisma-examples/typescript/graphql/prisma` and create the `.env` file. To connect your database, you need to set the URL field of the datasource block in your Prisma schema to your database connection URL. In this case, the url is set via an environment variable which is defined in `.env` of the form:
 ```
 DATABASE_URL="postgresql://user:password@host:port/db?schema=name"
 ```
@@ -38,7 +38,7 @@ DATABASE_URL="postgresql://yugabyte@127.0.0.1:5433/northwind"
 ```
 If you specified a host and port during cluster creation, you can replace `localhost:5433` with that by fetching it from running `~/code/yugabyte-db/bin/yb-ctl status`.
 
-The parameters for this connection string when using the Free Cloud Tier can be found by navigating to the connection info as you did previously and replacing `user, password, host, and port` accordingly. Replace `db` with `northwind` and leave schema empty (default to the public schema). 
+The parameters for this connection string when using the Free Cloud Tier can be found by navigating to the connection info as you did previously and replacing `user, password, host, and port` accordingly. Replace `db` with `northwind` and leave schema empty (default to the public schema). Add this line and save the file.
 
 ### 4. Install npm dependencies.
 
