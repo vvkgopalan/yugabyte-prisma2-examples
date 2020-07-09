@@ -39,3 +39,79 @@ DATABASE_URL="postgresql://yugabyte@127.0.0.1:5433/northwind"
 If you specified a host and port during cluster creation, you can replace `localhost:5433` with that by fetching it from running `~/code/yugabyte-db/bin/yb-ctl status`.
 
 The parameters for this connection string when using the Free Cloud Tier can be found by navigating to the connection info as you did previously and replacing `user, password, host, and port` accordingly. Replace `db` with `northwind` and leave schema empty (default to the public schema). 
+
+### 4. Install npm dependencies.
+
+```
+cd yugabyte-prisma2-examples/northwind-graphql
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+### 5. Start the GraphQL server
+
+Launch your GraphQL server with this command:
+
+```
+npm run dev
+```
+
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+
+## Using the GraphQL API
+
+The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
+
+### Retrieve all published posts and their authors
+
+```graphql
+query {
+  feed {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+<Details><Summary><strong>See more API operations</strong></Summary>
+
+### Create a new user
+
+```graphql
+mutation {
+  signupUser(
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
+  ) {
+    id
+  }
+}
+```
+
+### Create a new draft
+
+```graphql
+mutation {
+  createDraft(
+    title: "Join the Prisma Slack"
+    content: "https://slack.prisma.io"
+    authorEmail: "alice@prisma.io"
+  ) {
+    id
+    published
+  }
+}
+```
+
