@@ -1,13 +1,13 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const Territories = objectType({
-  name: 'Territories',
+export const territories = objectType({
+  name: 'territories',
   definition(t) {
     t.model.region_id();
     t.model.territory_description();
     t.model.territory_id();
     t.model.region();
-    t.model.employee_territories();
+    t.model.employeeterritories();
   },
 });
 
@@ -22,12 +22,12 @@ export const territoriesQuery = extendType({
 export const territoriesMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneTerritories();
-    t.crud.updateOneTerritories();
-    t.crud.upsertOneTerritories();
-    t.crud.deleteOneTerritories();
+    t.crud.createOneterritories();
+    t.crud.updateOneterritories();
+    t.crud.upsertOneterritories();
+    t.crud.deleteOneterritories();
 
-    t.crud.updateManyTerritories();
-    t.crud.deleteManyTerritories();
+    t.crud.updateManyterritories();
+    t.crud.deleteManyterritories();
   },
 });

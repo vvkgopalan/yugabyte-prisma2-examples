@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const Categories = objectType({
-  name: 'Categories',
+export const categories = objectType({
+  name: 'categories',
   definition(t) {
     t.model.category_id();
     t.model.category_name();
@@ -21,12 +21,12 @@ export const categoriesQuery = extendType({
 export const categoriesMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneCategories();
-    t.crud.updateOneCategories();
-    t.crud.upsertOneCategories();
-    t.crud.deleteOneCategories();
+    t.crud.createOnecategories();
+    t.crud.updateOnecategories();
+    t.crud.upsertOnecategories();
+    t.crud.deleteOnecategories();
 
-    t.crud.updateManyCategories();
-    t.crud.deleteManyCategories();
+    t.crud.updateManycategories();
+    t.crud.deleteManycategories();
   },
 });

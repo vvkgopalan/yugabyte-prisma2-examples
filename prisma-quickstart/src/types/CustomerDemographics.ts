@@ -1,31 +1,31 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const CustomerDemographics = objectType({
-  name: 'CustomerDemographics',
+export const customerdemographics = objectType({
+  name: 'customerdemographics',
   definition(t) {
     t.model.customer_desc();
     t.model.customer_type_id();
-    t.model.customer_customer_demo();
+    t.model.customercustomerdemo();
   },
 });
 
-export const customerDemographicsQuery = extendType({
+export const customerdemographicsQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.customerDemographics();
-    t.crud.customerDemographics({ filtering: true, ordering: true });
+    t.crud.customerdemographics();
+    t.crud.customerdemographics({ filtering: true, ordering: true });
   },
 });
 
-export const customerDemographicsMutation = extendType({
+export const customerdemographicsMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneCustomerDemographics();
-    t.crud.updateOneCustomerDemographics();
-    t.crud.upsertOneCustomerDemographics();
-    t.crud.deleteOneCustomerDemographics();
+    t.crud.createOnecustomerdemographics();
+    t.crud.updateOnecustomerdemographics();
+    t.crud.upsertOnecustomerdemographics();
+    t.crud.deleteOnecustomerdemographics();
 
-    t.crud.updateManyCustomerDemographics();
-    t.crud.deleteManyCustomerDemographics();
+    t.crud.updateManycustomerdemographics();
+    t.crud.deleteManycustomerdemographics();
   },
 });

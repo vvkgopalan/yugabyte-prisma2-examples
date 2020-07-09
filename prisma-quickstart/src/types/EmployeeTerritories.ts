@@ -1,32 +1,33 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const EmployeeTerritories = objectType({
-  name: 'EmployeeTerritories',
+export const employeeterritories = objectType({
+  name: 'employeeterritories',
   definition(t) {
     t.model.employee_id();
     t.model.territory_id();
     t.model.employees();
     t.model.territories();
+    t.model.desc();
   },
 });
 
-export const employeeTerritoriesQuery = extendType({
+export const employeeterritoriesQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.employeeTerritories();
-    t.crud.employeeTerritories({ filtering: true, ordering: true });
+    t.crud.employeeterritories();
+    t.crud.employeeterritories({ filtering: true, ordering: true });
   },
 });
 
-export const employeeTerritoriesMutation = extendType({
+export const employeeterritoriesMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneEmployeeTerritories();
-    t.crud.updateOneEmployeeTerritories();
-    t.crud.upsertOneEmployeeTerritories();
-    t.crud.deleteOneEmployeeTerritories();
+    t.crud.createOneemployeeterritories();
+    t.crud.updateOneemployeeterritories();
+    t.crud.upsertOneemployeeterritories();
+    t.crud.deleteOneemployeeterritories();
 
-    t.crud.updateManyEmployeeTerritories();
-    t.crud.deleteManyEmployeeTerritories();
+    t.crud.updateManyemployeeterritories();
+    t.crud.deleteManyemployeeterritories();
   },
 });

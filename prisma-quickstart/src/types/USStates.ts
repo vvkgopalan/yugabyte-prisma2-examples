@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const USStates = objectType({
-  name: 'USStates',
+export const usstates = objectType({
+  name: 'usstates',
   definition(t) {
     t.model.state_abbr();
     t.model.state_id();
@@ -10,23 +10,23 @@ export const USStates = objectType({
   },
 });
 
-export const uSStatesQuery = extendType({
+export const usstatesQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.USStates();
-    t.crud.USStates({ filtering: true, ordering: true });
+    t.crud.usstates();
+    t.crud.usstates({ filtering: true, ordering: true });
   },
 });
 
-export const uSStatesMutation = extendType({
+export const usstatesMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneUSStates();
-    t.crud.updateOneUSStates();
-    t.crud.upsertOneUSStates();
-    t.crud.deleteOneUSStates();
+    t.crud.createOneusstates();
+    t.crud.updateOneusstates();
+    t.crud.upsertOneusstates();
+    t.crud.deleteOneusstates();
 
-    t.crud.updateManyUSStates();
-    t.crud.deleteManyUSStates();
+    t.crud.updateManyusstates();
+    t.crud.deleteManyusstates();
   },
 });

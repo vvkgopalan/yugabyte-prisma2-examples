@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const Employees = objectType({
-  name: 'Employees',
+export const employees = objectType({
+  name: 'employees',
   definition(t) {
     t.model.address();
     t.model.birth_date();
@@ -21,8 +21,8 @@ export const Employees = objectType({
     t.model.title();
     t.model.title_of_courtesy();
     t.model.employees();
-    t.model.employee_territories();
     t.model.other_employees();
+    t.model.employeeterritories();
     t.model.orders();
   },
 });
@@ -38,12 +38,12 @@ export const employeesQuery = extendType({
 export const employeesMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneEmployees();
-    t.crud.updateOneEmployees();
-    t.crud.upsertOneEmployees();
-    t.crud.deleteOneEmployees();
+    t.crud.createOneemployees();
+    t.crud.updateOneemployees();
+    t.crud.upsertOneemployees();
+    t.crud.deleteOneemployees();
 
-    t.crud.updateManyEmployees();
-    t.crud.deleteManyEmployees();
+    t.crud.updateManyemployees();
+    t.crud.deleteManyemployees();
   },
 });

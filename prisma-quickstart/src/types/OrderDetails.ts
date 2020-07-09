@@ -1,7 +1,7 @@
 import { objectType, extendType } from '@nexus/schema';
 
-export const OrderDetails = objectType({
-  name: 'OrderDetails',
+export const orderdetails = objectType({
+  name: 'orderdetails',
   definition(t) {
     t.model.discount();
     t.model.order_id();
@@ -13,23 +13,23 @@ export const OrderDetails = objectType({
   },
 });
 
-export const orderDetailsQuery = extendType({
+export const orderdetailsQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.orderDetails();
-    t.crud.orderDetails({ filtering: true, ordering: true });
+    t.crud.orderdetails();
+    t.crud.orderdetails({ filtering: true, ordering: true });
   },
 });
 
-export const orderDetailsMutation = extendType({
+export const orderdetailsMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.crud.createOneOrderDetails();
-    t.crud.updateOneOrderDetails();
-    t.crud.upsertOneOrderDetails();
-    t.crud.deleteOneOrderDetails();
+    t.crud.createOneorderdetails();
+    t.crud.updateOneorderdetails();
+    t.crud.upsertOneorderdetails();
+    t.crud.deleteOneorderdetails();
 
-    t.crud.updateManyOrderDetails();
-    t.crud.deleteManyOrderDetails();
+    t.crud.updateManyorderdetails();
+    t.crud.deleteManyorderdetails();
   },
 });

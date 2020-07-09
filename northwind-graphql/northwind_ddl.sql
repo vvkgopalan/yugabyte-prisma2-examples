@@ -21,17 +21,17 @@ SET default_with_oids = false;
 ---
 
 
-DROP TABLE IF EXISTS customer_customer_demo;
-DROP TABLE IF EXISTS customer_demographics;
-DROP TABLE IF EXISTS employee_territories;
-DROP TABLE IF EXISTS order_details;
+DROP TABLE IF EXISTS CustomerCustomerDemo;
+DROP TABLE IF EXISTS CustomerDemographics;
+DROP TABLE IF EXISTS EmployeeTerritories;
+DROP TABLE IF EXISTS OrderDetails;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS shippers;
 DROP TABLE IF EXISTS suppliers;
 DROP TABLE IF EXISTS territories;
-DROP TABLE IF EXISTS us_states;
+DROP TABLE IF EXISTS usstates;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS employees;
@@ -49,10 +49,10 @@ CREATE TABLE categories (
 
 
 --
--- Name: customer_demographics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: CustomerDemographics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE customer_demographics (
+CREATE TABLE CustomerDemographics (
     customer_type_id bpchar NOT NULL PRIMARY KEY,
     customer_desc text
 );
@@ -77,14 +77,14 @@ CREATE TABLE customers (
 );
 
 --
--- Name: customer_customer_demo; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: CustomerCustomerDemo; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE customer_customer_demo (
+CREATE TABLE CustomerCustomerDemo (
     customer_id bpchar NOT NULL,
     customer_type_id bpchar NOT NULL,
     PRIMARY KEY (customer_id, customer_type_id),
-    FOREIGN KEY (customer_type_id) REFERENCES customer_demographics,
+    FOREIGN KEY (customer_type_id) REFERENCES CustomerDemographics,
     FOREIGN KEY (customer_id) REFERENCES customers
 );
 
@@ -214,10 +214,10 @@ CREATE TABLE territories (
 
 
 --
--- Name: employee_territories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: EmployeeTerritories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE employee_territories (
+CREATE TABLE EmployeeTerritories (
     employee_id smallint NOT NULL,
     territory_id character varying(20) NOT NULL,
     PRIMARY KEY (employee_id, territory_id),
@@ -227,10 +227,10 @@ CREATE TABLE employee_territories (
 
 
 --
--- Name: order_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: OrderDetails; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE order_details (
+CREATE TABLE OrderDetails (
     order_id smallint NOT NULL,
     product_id smallint NOT NULL,
     unit_price real NOT NULL,
@@ -243,10 +243,10 @@ CREATE TABLE order_details (
 
 
 --
--- Name: us_states; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: usstates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE us_states (
+CREATE TABLE usstates (
     state_id smallint NOT NULL PRIMARY KEY,
     state_name character varying(100),
     state_abbr character varying(2),
