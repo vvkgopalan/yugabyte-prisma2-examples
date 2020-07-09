@@ -6,7 +6,11 @@ This example shows how to implement a **GraphQL server with TypeScript** based o
 
 ### 1. Get started with Yugabyte and get a cluster up and running!
 
-If you are unfamiliar with Yugabyte and creating a simple cluster, please proceed to this handy [Quick Start](https://docs.yugabyte.com/latest/quick-start/) page to learn more.
+If you are unfamiliar with Yugabyte and creating a simple cluster, please proceed to this handy [Quick Start](https://docs.yugabyte.com/latest/quick-start/) page to learn more. Then start up a 3 node cluster by running the following:
+
+```
+./bin/yb-ctl --rf=3 create
+```
 
 The alternative to creating a local cluster is to create a cluster using [Yugabyte Cloud](https://www.yugabyte.com/cloud/) - Yugabyte's fully managed service. You can register for the free cloud tier which includes 5GB of storage that will be replicated across 3 nodes. In order to create a cluster proceed through the following steps:
 
@@ -65,19 +69,25 @@ The schema that specifies the API operations of your GraphQL server is defined i
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
-### Retrieve all published posts and their authors
+### Retrieve all customers and their orders
 
 ```graphql
 query {
-  feed {
-    id
-    title
-    content
-    published
-    author {
-      id
-      name
-      email
+  customers {
+    phone
+    region
+    address
+    postal_code
+    company_name
+    orders {
+      order_date
+      orderdetails {
+        unit_price
+        discount
+        products {
+          product_name
+        }
+      }
     }
   }
 }
@@ -85,32 +95,22 @@ query {
 
 <Details><Summary><strong>See more API operations</strong></Summary>
 
-### Create a new user
+### Create a new customer
 
 ```graphql
 mutation {
-  signupUser(
+  createOnecustomers (
     data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
+      city: "Sunnyvale"
+      country: "United States"
+      company_name: "Yugabyte"
+      contact_name: "GraphQL"
+      contact_title: "Developer"
+      customer_id: "yugabyte_uuid"
     }
-  ) {
-    id
-  }
-}
-```
-
-### Create a new draft
-
-```graphql
-mutation {
-  createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
-    authorEmail: "alice@prisma.io"
-  ) {
-    id
-    published
+  ){
+    company_name
+    contact_name
   }
 }
 ```
