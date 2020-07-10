@@ -32,7 +32,7 @@ Load your data via `\i ~/code/yugabyte-prisma2-examples/northwind/northwind_ddl.
 
 ### 3. Add connection information to Prisma environment file. 
 
-Navigate to `~/code/prisma-examples/typescript/graphql/prisma` and create the `.env` file. To connect your database, you need to set the URL field of the datasource block in your Prisma schema to your database connection URL. In this case, the url is set via an environment variable which is defined in `.env` of the form:
+Navigate to `~/code/yugabyte-prisma2-examples/northwind-graphql/prisma` and create the `.env` file. To connect your database, you need to set the URL field of the datasource block in your Prisma schema to your database connection URL. In this case, the url is set via an environment variable which is defined in `.env` of the form:
 ```
 DATABASE_URL="postgresql://user:password@host:port/db?schema=name"
 ```
@@ -47,7 +47,7 @@ The parameters for this connection string when using the Free Cloud Tier can be 
 ### 4. Install npm dependencies.
 
 ```
-cd yugabyte-prisma2-examples/northwind-graphql
+cd ~/code/yugabyte-prisma2-examples/northwind-graphql
 npm install
 ```
 
